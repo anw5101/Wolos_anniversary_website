@@ -1,0 +1,1 @@
+# Disable Jekyll processing on GitHub Pages to preserve files starting with an underscore (such as assets/_UR23660.jpg)

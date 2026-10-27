@@ -1,0 +1,2266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Drew &amp; Hannah Wolos • 10-Year Anniversary Celebration Weekend | July 9–10, 2027</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ivory: '#FAF7F2',
+            linen: '#F3EDE2',
+            champagne: '#E6DCCB',
+            sage: {
+              50: '#F3F6F4',
+              100: '#E3EBE6',
+              500: '#5C7C6D',
+              600: '#4A6B5D',
+              700: '#3A5549',
+              800: '#2C4238'
+            },
+            gold: {
+              400: '#C8A46E',
+              500: '#B8925A',
+              600: '#9B7844'
+            },
+            espresso: '#2C2623'
+          },
+          fontFamily: {
+            serif: ['"Cormorant Garamond"', 'Georgia', 'serif'],
+            sans: ['"Inter"', 'system-ui', 'sans-serif']
+          }
+        }
+      }
+    };
+  </script>
+  <style>
+    body {
+      background-color: #FAF7F2;
+      color: #2C2623;
+      font-family: 'Inter', system-ui, sans-serif;
+      overflow-x: hidden;
+    }
+    .font-wedding {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+    }
+    .gold-divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #B8925A, transparent);
+    }
+    .card-wedding {
+      background: #FFFFFF;
+      border: 1px solid #E6DCCB;
+      box-shadow: 0 8px 24px -6px rgba(44, 38, 35, 0.06);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .card-wedding:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 28px -6px rgba(44, 38, 35, 0.1);
+    }
+    .nav-tab-active {
+      color: #3A5549;
+      border-bottom: 2px solid #B8925A;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col selection:bg-sage-100 selection:text-sage-800">
+
+  <!-- Toast Notification -->
+  <div id="toast-container" class="fixed bottom-5 right-5 z-50 hidden max-w-sm bg-espresso text-ivory px-5 py-3.5 rounded-xl shadow-xl border border-gold-500/40 flex items-center gap-3 transition-all duration-300">
+    <span class="w-2.5 h-2.5 rounded-full bg-gold-400 shrink-0"></span>
+    <p id="toast-message" class="text-sm font-medium"></p>
+  </div>
+
+  <!-- Fullscreen Photo Lightbox Modal -->
+  <div id="lightbox-modal" class="fixed inset-0 z-50 hidden bg-espresso/90 backdrop-blur-md flex items-center justify-center p-4">
+    <button id="lightbox-close" type="button" class="absolute top-5 right-5 text-ivory/80 hover:text-white bg-espresso/60 hover:bg-espresso p-2.5 rounded-full border border-ivory/20 transition" aria-label="Close photo">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+    </button>
+    <button id="lightbox-prev" type="button" class="absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 text-ivory/80 hover:text-white bg-espresso/60 hover:bg-espresso p-3 rounded-full border border-ivory/20 transition" aria-label="Previous photo">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+    </button>
+    <button id="lightbox-next" type="button" class="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 text-ivory/80 hover:text-white bg-espresso/60 hover:bg-espresso p-3 rounded-full border border-ivory/20 transition" aria-label="Next photo">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+    </button>
+    <div class="max-w-4xl w-full flex flex-col items-center">
+      <div class="relative max-h-[75vh] w-full flex items-center justify-center overflow-hidden rounded-2xl border border-gold-400/40 bg-black/40 shadow-2xl">
+        <img id="lightbox-img" src="assets/Hannah080.JPG" alt="Enlarged memory photo" class="max-h-[75vh] w-auto object-contain" />
+      </div>
+      <div class="mt-4 text-center max-w-2xl px-4">
+        <span id="lightbox-badge" class="inline-block text-[11px] uppercase tracking-widest text-gold-400 font-semibold mb-1">Our Wedding • July 1, 2017</span>
+        <h3 id="lightbox-title" class="font-wedding text-2xl sm:text-3xl font-semibold text-ivory">Drew &amp; Hannah</h3>
+        <p id="lightbox-caption" class="text-xs sm:text-sm text-champagne/90 mt-1"></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Calendar Modal (Supports Both Friday Night & Saturday Party) -->
+  <div id="calendar-modal" class="fixed inset-0 z-50 hidden bg-espresso/60 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-ivory border border-champagne rounded-2xl max-w-lg w-full p-6 shadow-2xl relative">
+      <button id="close-calendar-modal" type="button" class="absolute top-4 right-4 text-espresso/60 hover:text-espresso p-1.5 rounded-lg hover:bg-linen transition" aria-label="Close modal">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+      <div class="text-center mb-5">
+        <span class="inline-block text-xs uppercase tracking-widest text-gold-600 font-semibold mb-1">Save the Weekend</span>
+        <h3 class="font-wedding text-3xl font-semibold text-espresso">Add to Your Calendar</h3>
+        <p class="text-sm text-espresso/75 mt-1">Friday, July 9 &amp; Saturday, July 10, 2027 • Des Moines Metro</p>
+      </div>
+      <div class="space-y-3">
+        <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Drew+%26+Hannah%27s+Friday+Night+Welcome+Gathering&dates=20270709T220000Z/20270710T020000Z&details=Casual+Friday+evening+welcome+gathering+at+Drew+%26+Hannah%27s+house%21+Anyone+in+town+is+welcome+to+come+hang+out%E2%80%94kids+can+play+and+we%27ll+have+food+and+drinks+starting+at+5%3A00+PM.&location=5109+165th+Cir%2C+Urbandale%2C+IA+50323" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between w-full px-4 py-3 rounded-xl bg-white border border-champagne hover:border-gold-500 transition text-sm font-medium text-espresso">
+          <div>
+            <span class="block font-semibold">Friday Night Welcome Gathering (Google Calendar)</span>
+            <span class="block text-xs text-espresso/65">Fri, July 9, 2027 • Starting at 5:00 PM CDT • Our House in Urbandale</span>
+          </div>
+          <span class="text-xs text-sage-600 font-semibold shrink-0 ml-2">Add ↗</span>
+        </a>
+        <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Drew+%26+Hannah%27s+10-Year+Anniversary+Party&dates=20270710T160000Z/20270710T210000Z&details=Celebrating+10+years+of+marriage+with+live+music%2C+food%2C+and+drinks+at+Big+Grove+Brewery+%2811%3A00+AM+%E2%80%93+4%3A00+PM+CDT%29%21&location=Big+Grove+Brewery+%26+Taproom%2C+555+17th+St%2C+Des+Moines%2C+IA+50309" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between w-full px-4 py-3 rounded-xl bg-white border border-champagne hover:border-gold-500 transition text-sm font-medium text-espresso">
+          <div>
+            <span class="block font-semibold">Saturday 10-Year Anniversary Party (Google Calendar)</span>
+            <span class="block text-xs text-espresso/65">Sat, July 10, 2027 • 11:00 AM – 4:00 PM CDT • Big Grove Brewery</span>
+          </div>
+          <span class="text-xs text-sage-600 font-semibold shrink-0 ml-2">Add ↗</span>
+        </a>
+        <button id="download-ics-btn" type="button" class="flex items-center justify-between w-full px-4 py-3.5 rounded-xl bg-sage-600 hover:bg-sage-700 transition text-sm font-medium text-white">
+          <div class="text-left">
+            <span class="block font-semibold">Apple / Outlook Calendar (.ics for Both Events)</span>
+            <span class="block text-xs text-champagne">Includes Friday Night Welcome (5 PM) + Saturday Party (11 AM–4 PM)</span>
+          </div>
+          <span class="text-xs text-champagne font-semibold shrink-0 ml-2">Download ↓</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Top Announcement Ribbon -->
+  <div class="bg-sage-800 text-ivory text-xs py-2 px-4 text-center tracking-wide">
+    <span class="font-medium">Celebrating Ten Years • July 1, 2017 – July 1, 2027</span>
+    <span class="mx-2 text-gold-400">•</span>
+    <span><strong>Fri, July 9 (5 PM+)</strong> Welcome at Our House</span>
+    <span class="mx-2 text-gold-400">•</span>
+    <span><strong>Sat, July 10 (11 AM – 4 PM)</strong> Party at Big Grove Brewery</span>
+  </div>
+
+  <!-- Sticky Navigation Header -->
+  <header class="sticky top-0 z-40 bg-ivory/95 backdrop-blur-md border-b border-champagne">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <div class="flex items-center justify-between h-20">
+        <!-- Brand / Monogram -->
+        <button type="button" data-page-target="home" class="nav-trigger text-left group focus:outline-none">
+          <div class="flex items-center gap-3">
+            <div class="w-11 h-11 rounded-full bg-linen border border-gold-400 overflow-hidden flex items-center justify-center font-wedding text-lg font-bold text-sage-700 group-hover:border-sage-600 transition">
+              <img src="assets/Hannah080.JPG" alt="Drew and Hannah" class="w-full h-full object-cover" />
+            </div>
+            <div>
+              <span class="block font-wedding text-2xl sm:text-3xl font-semibold tracking-tight text-espresso leading-none">Drew &amp; Hannah</span>
+              <span class="block text-[11px] uppercase tracking-[0.2em] text-gold-600 mt-0.5">Ten Year Anniversary • July 9–10, 2027</span>
+            </div>
+          </div>
+        </button>
+
+        <!-- Desktop Navigation Links -->
+        <nav class="hidden md:flex items-center gap-1 lg:gap-1.5" aria-label="Main Navigation">
+          <button type="button" data-page-target="home" class="nav-trigger nav-tab px-3 py-2 text-sm text-espresso/80 hover:text-sage-700 transition nav-tab-active">
+            Our Celebration
+          </button>
+          <button type="button" data-page-target="event" class="nav-trigger nav-tab px-3 py-2 text-sm text-espresso/80 hover:text-sage-700 transition">
+            Weekend Events
+          </button>
+          <button type="button" data-page-target="album" class="nav-trigger nav-tab px-3 py-2 text-sm text-espresso/80 hover:text-sage-700 transition">
+            Photo Album
+          </button>
+          <button type="button" data-page-target="lodging" class="nav-trigger nav-tab px-3 py-2 text-sm text-espresso/80 hover:text-sage-700 transition">
+            Travel &amp; Lodging
+          </button>
+          <button type="button" data-page-target="things-to-do" class="nav-trigger nav-tab px-3 py-2 text-sm text-espresso/80 hover:text-sage-700 transition">
+            Things to Do
+          </button>
+          <button type="button" data-page-target="rsvp" class="nav-trigger ml-2 px-5 py-2.5 rounded-full bg-sage-600 hover:bg-sage-700 text-white text-sm font-medium shadow-sm transition">
+            RSVP
+          </button>
+        </nav>
+
+        <!-- Mobile Menu Button -->
+        <div class="md:hidden flex items-center gap-2">
+          <button type="button" data-page-target="rsvp" class="nav-trigger px-3.5 py-1.5 rounded-full bg-sage-600 text-white text-xs font-medium">
+            RSVP
+          </button>
+          <button id="mobile-menu-toggle" type="button" class="p-2 rounded-lg text-espresso hover:bg-linen focus:outline-none" aria-label="Toggle Menu">
+            <svg id="menu-icon-open" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+            <svg id="menu-icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile Dropdown Navigation -->
+      <div id="mobile-menu" class="hidden md:hidden pb-4 pt-2 border-t border-champagne/60 space-y-1">
+        <button type="button" data-page-target="home" class="nav-trigger block w-full text-left px-3 py-2.5 rounded-lg text-sm font-medium hover:bg-linen">Our Celebration &amp; 10-Year Story</button>
+        <button type="button" data-page-target="event" class="nav-trigger block w-full text-left px-3 py-2.5 rounded-lg text-sm font-medium hover:bg-linen">Weekend Events (Fri Night &amp; Sat Party)</button>
+        <button type="button" data-page-target="album" class="nav-trigger block w-full text-left px-3 py-2.5 rounded-lg text-sm font-medium hover:bg-linen">Photo Album (Wedding, Family &amp; Travels)</button>
+        <button type="button" data-page-target="lodging" class="nav-trigger block w-full text-left px-3 py-2.5 rounded-lg text-sm font-medium hover:bg-linen">Travel &amp; Lodging (Downtown &amp; Jordan Creek)</button>
+        <button type="button" data-page-target="things-to-do" class="nav-trigger block w-full text-left px-3 py-2.5 rounded-lg text-sm font-medium hover:bg-linen">Things to Do in Des Moines</button>
+        <button type="button" data-page-target="rsvp" class="nav-trigger block w-full text-left px-3 py-2.5 rounded-lg text-sm font-semibold text-sage-700 bg-sage-50">RSVP Online</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Multi-Page Content Area -->
+  <main class="flex-grow">
+
+    <!-- ==================== PAGE 1: HOME / OUR CELEBRATION ==================== -->
+    <section id="page-home" class="page-section">
+      <!-- Hero Section (Using Drew & Hannah's Wedding Portrait Hannah080.JPG) -->
+      <div class="relative overflow-hidden bg-espresso">
+        <img id="hero-banner-img" src="assets/Hannah080.JPG" alt="Drew and Hannah wedding portrait kissing under a blue sky in Dubuque, Iowa" class="w-full h-[500px] sm:h-[600px] object-cover object-[center_28%] opacity-60 max-w-full" />
+        <div class="absolute inset-0 bg-gradient-to-t from-espresso via-espresso/40 to-espresso/20"></div>
+        <div class="absolute inset-0 flex items-center justify-center px-4">
+          <div class="max-w-3xl mx-auto text-center text-ivory">
+            <p class="text-xs sm:text-sm uppercase tracking-[0.3em] text-gold-400 font-medium mb-3">A Decade of Love, Family &amp; Adventure • 2017–2027</p>
+            <h1 class="font-wedding text-5xl sm:text-7xl font-semibold tracking-tight leading-none mb-4">
+              Drew &amp; Hannah
+            </h1>
+            <p class="font-wedding italic text-2xl sm:text-3xl text-champagne mb-6">
+              Please join us to celebrate 10 years of wedded bliss!
+            </p>
+            <div class="inline-flex flex-col sm:flex-row flex-wrap items-center justify-center gap-2 sm:gap-4 bg-espresso/85 backdrop-blur-md border border-gold-400/50 rounded-2xl px-5 py-3.5 text-xs sm:text-sm mb-7">
+              <div>
+                <span class="font-semibold text-gold-400">Fri, July 9, 2027 (5:00 PM+):</span>
+                <span class="text-champagne">Welcome at Our House (Urbandale)</span>
+              </div>
+              <span class="hidden sm:inline text-gold-400">•</span>
+              <div>
+                <span class="font-semibold text-white">Sat, July 10, 2027 (11 AM – 4 PM):</span>
+                <span class="text-champagne">Big Grove Brewery (Des Moines)</span>
+              </div>
+            </div>
+            <div class="flex flex-wrap items-center justify-center gap-3">
+              <button type="button" data-page-target="rsvp" class="nav-trigger px-7 py-3.5 rounded-full bg-sage-600 hover:bg-sage-500 text-white font-medium text-sm tracking-wide shadow-lg transition">
+                RSVP Online
+              </button>
+              <button type="button" data-page-target="album" class="nav-trigger px-6 py-3.5 rounded-full bg-ivory/15 hover:bg-ivory/25 text-ivory border border-ivory/40 font-medium text-sm tracking-wide backdrop-blur-sm transition">
+                Explore Photo Album
+              </button>
+              <button id="open-calendar-modal-hero" type="button" class="px-6 py-3.5 rounded-full bg-ivory/15 hover:bg-ivory/25 text-ivory border border-ivory/40 font-medium text-sm tracking-wide backdrop-blur-sm transition">
+                Save the Dates (.ics / Google)
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Live Countdown Ribbon -->
+      <div class="bg-linen border-b border-champagne py-8 px-4">
+        <div class="max-w-4xl mx-auto text-center">
+          <p class="text-xs uppercase tracking-[0.25em] text-gold-600 font-semibold mb-4">Counting Down to Anniversary Weekend • July 9–10, 2027</p>
+          <div class="grid grid-cols-4 gap-3 sm:gap-6 max-w-xl mx-auto">
+            <div class="bg-white border border-champagne rounded-xl p-3 sm:p-4 shadow-sm">
+              <span id="cd-days" class="block font-wedding text-3xl sm:text-4xl font-bold text-sage-700">258</span>
+              <span class="text-[11px] uppercase tracking-widest text-espresso/60">Days</span>
+            </div>
+            <div class="bg-white border border-champagne rounded-xl p-3 sm:p-4 shadow-sm">
+              <span id="cd-hours" class="block font-wedding text-3xl sm:text-4xl font-bold text-sage-700">18</span>
+              <span class="text-[11px] uppercase tracking-widest text-espresso/60">Hours</span>
+            </div>
+            <div class="bg-white border border-champagne rounded-xl p-3 sm:p-4 shadow-sm">
+              <span id="cd-mins" class="block font-wedding text-3xl sm:text-4xl font-bold text-sage-700">45</span>
+              <span class="text-[11px] uppercase tracking-widest text-espresso/60">Minutes</span>
+            </div>
+            <div class="bg-white border border-champagne rounded-xl p-3 sm:p-4 shadow-sm">
+              <span id="cd-secs" class="block font-wedding text-3xl sm:text-4xl font-bold text-sage-700">12</span>
+              <span class="text-[11px] uppercase tracking-widest text-espresso/60">Seconds</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Welcome & Our Story Split Section with Wedding Portraits -->
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 py-14">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center mb-16">
+          <div class="lg:col-span-6 space-y-4">
+            <span class="text-xs uppercase tracking-[0.25em] text-gold-600 font-semibold">July 1, 2017 — July 1, 2027</span>
+            <h2 class="font-wedding text-4xl sm:text-5xl font-semibold text-espresso leading-tight">Ten Years Later, Let’s Celebrate Together!</h2>
+            <div class="gold-divider w-36"></div>
+            <p class="text-espresso/80 leading-relaxed text-base">
+              We said “I do” on July 1, 2017, along the Mississippi River in Dubuque. A decade later—filled with unforgettable travels across Europe and beyond, a move to the Des Moines metro, and the adventure with our sweet son, <strong>Colin</strong>—we are so excited to gather our family and friends for a relaxed summer anniversary weekend!
+            </p>
+            <p class="text-espresso/80 leading-relaxed text-base">
+              If you’re in town on <strong>Friday evening, July 9, starting at 5:00 PM</strong>, come over to our house in Urbandale where the kids can play and we’ll have food and drinks. Then on <strong>Saturday, July 10, from 11:00 AM to 4:00 PM</strong>, join us at <a href="https://biggrove.com/pages/des-moines-taproom" target="_blank" rel="noopener noreferrer" class="text-sage-700 underline hover:text-sage-800 font-medium">Big Grove Brewery &amp; Taproom</a> in downtown Des Moines for an easygoing afternoon of live music, food, and drinks!
+            </p>
+            <div class="bg-linen/70 border border-champagne rounded-2xl p-5 mt-4">
+              <p class="font-wedding italic text-2xl text-espresso leading-snug">
+                “I vow to make time in our lives to travel together, because life is too short to not… Every journey begins with a single hop.”
+              </p>
+              <p class="text-xs uppercase tracking-widest text-gold-600 font-semibold mt-2">
+                From Drew’s Wedding Vows to Hannah • July 1, 2017
+              </p>
+            </div>
+          </div>
+
+          <!-- Dual Framed Wedding Portraits (_UR23660.jpg & Hannah190.JPG) -->
+          <div class="lg:col-span-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="card-wedding rounded-2xl overflow-hidden group cursor-pointer lightbox-trigger" data-photo-src="assets/_UR23660.jpg" data-photo-title="Along the Mississippi Riverwalk" data-photo-badge="Our Wedding • July 1, 2017" data-photo-caption="Drew and Hannah on the wooden dock at the National Mississippi River Museum & Aquarium in Dubuque, Iowa.">
+              <div class="h-80 sm:h-96 overflow-hidden bg-linen">
+                <img src="assets/_UR23660.jpg" alt="Drew and Hannah standing on the dock at the National Mississippi River Museum in Dubuque" class="w-full h-full object-cover object-top group-hover:scale-105 transition duration-500" />
+              </div>
+              <div class="p-3.5 bg-white">
+                <span class="text-[11px] uppercase tracking-wider text-gold-600 font-semibold">Dubuque, IA • July 1, 2017</span>
+                <p class="font-wedding text-lg font-semibold text-espresso">By the Mississippi River</p>
+              </div>
+            </div>
+
+            <div class="space-y-4 flex flex-col justify-between">
+              <div class="card-wedding rounded-2xl overflow-hidden group cursor-pointer lightbox-trigger" data-photo-src="assets/Hannah190.JPG" data-photo-title="Showing Off the Ring!" data-photo-badge="Our Wedding • July 1, 2017" data-photo-caption="Hannah beaming and showing off her wedding band while Drew and the groomsmen react by the water in Dubuque.">
+                <div class="h-44 overflow-hidden bg-linen">
+                  <img src="assets/Hannah190.JPG" alt="Hannah showing off her wedding ring to Drew and the groomsmen" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" />
+                </div>
+                <div class="p-3 bg-white">
+                  <span class="text-[11px] uppercase tracking-wider text-gold-600 font-semibold">Just Married</span>
+                  <p class="font-wedding text-lg font-semibold text-espresso">Showing Off the Ring!</p>
+                </div>
+              </div>
+
+              <div class="card-wedding rounded-2xl overflow-hidden group cursor-pointer lightbox-trigger" data-photo-src="assets/Hannah212.JPG" data-photo-title="Reception Celebration" data-photo-badge="Our Wedding • July 1, 2017" data-photo-caption="Celebrating on the dance floor at the National Mississippi River Museum & Aquarium reception.">
+                <div class="h-44 overflow-hidden bg-linen">
+                  <img src="assets/Hannah212.JPG" alt="Drew celebrating on the wedding reception dance floor" class="w-full h-full object-cover object-[center_22%] group-hover:scale-105 transition duration-500" />
+                </div>
+                <div class="p-3 bg-white">
+                  <span class="text-[11px] uppercase tracking-wider text-gold-600 font-semibold">Reception Dance Floor</span>
+                  <p class="font-wedding text-lg font-semibold text-espresso">Ten Years of Celebrating</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 10 Years of Marriage, Family & Travel Milestones (2017–2027) -->
+        <div class="mb-16 bg-linen/60 border border-champagne rounded-3xl p-6 sm:p-10">
+          <div class="text-center max-w-2xl mx-auto mb-8">
+            <span class="text-xs uppercase tracking-[0.25em] text-gold-600 font-semibold">Our Past Decade Together</span>
+            <h2 class="font-wedding text-3xl sm:text-4xl font-semibold text-espresso mt-1">10 Years of Marriage, Colin &amp; Adventures</h2>
+            <p class="text-xs sm:text-sm text-espresso/75 mt-1">
+              A look back at some of our favorite chapters from July 1, 2017 to today.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+            <div class="bg-white border border-champagne rounded-2xl p-5 shadow-sm group">
+              <div class="relative h-44 overflow-hidden rounded-xl mb-3 cursor-pointer lightbox-trigger" data-photo-src="assets/Hannah080.JPG" data-photo-title="Wedding Day by the River" data-photo-badge="July 1, 2017 • Dubuque, IA" data-photo-caption="Saying “I do” at the National Mississippi River Museum & Aquarium in Dubuque, taking portraits along River’s Edge Plaza, and dancing the night away.">
+                <img src="assets/Hannah080.JPG" alt="Wedding Day by the River" class="w-full h-full object-cover object-center group-hover:scale-105 transition duration-500" />
+                <span class="absolute top-2.5 left-2.5 bg-espresso/80 text-ivory text-[10px] font-medium px-2 py-0.5 rounded-full backdrop-blur-sm">Dubuque, IA</span>
+              </div>
+              <span class="inline-block text-[11px] font-bold uppercase tracking-widest text-sage-700 bg-sage-100 px-2.5 py-1 rounded-full mb-2">July 1, 2017 • Dubuque, IA</span>
+              <h3 class="font-wedding text-2xl font-semibold text-espresso">Wedding Day by the River</h3>
+              <p class="text-xs sm:text-sm text-espresso/75 mt-1.5 leading-relaxed">
+                Saying “I do” at the National Mississippi River Museum &amp; Aquarium in Dubuque, taking portraits along River’s Edge Plaza, and dancing the night away with family and friends.
+              </p>
+            </div>
+
+            <div class="bg-white border border-champagne rounded-2xl p-5 shadow-sm group">
+              <div class="relative h-44 overflow-hidden rounded-xl mb-3 cursor-pointer lightbox-trigger" data-photo-src="assets/IMG_20171001_175454.jpg" data-photo-title="First European Adventures" data-photo-badge="Fall 2017 • Salzburg, Austria" data-photo-caption="Kicking off our vow to travel together with unforgettable trips through Germany and the scenic mountain vistas of Salzburg, Austria.">
+                <img src="assets/IMG_20171001_175454.jpg" alt="Germany & Austria Honeymoon" class="w-full h-full object-cover object-center group-hover:scale-105 transition duration-500" />
+                <span class="absolute top-2.5 left-2.5 bg-espresso/80 text-ivory text-[10px] font-medium px-2 py-0.5 rounded-full backdrop-blur-sm">Salzburg & Germany</span>
+              </div>
+              <span class="inline-block text-[11px] font-bold uppercase tracking-widest text-gold-600 bg-linen px-2.5 py-1 rounded-full mb-2">2017 • Germany &amp; Austria</span>
+              <h3 class="font-wedding text-2xl font-semibold text-espresso">First European Adventures</h3>
+              <p class="text-xs sm:text-sm text-espresso/75 mt-1.5 leading-relaxed">
+                Kicking off our vow to travel together with unforgettable trips through Mannheim, Germany and the scenic mountains of Austria.
+              </p>
+            </div>
+
+            <div class="bg-white border border-champagne rounded-2xl p-5 shadow-sm group">
+              <div class="relative h-44 overflow-hidden rounded-xl mb-3 cursor-pointer lightbox-trigger" data-photo-src="assets/IMG_20190427_145655_1.jpg" data-photo-title="Growing Our Family with Colin" data-photo-badge="April 2019 • Welcoming Colin" data-photo-caption="Bringing home baby Colin in matching Penn State blue and white—our greatest adventure of all!">
+                <img src="assets/IMG_20190427_145655_1.jpg" alt="Welcoming Baby Colin" class="w-full h-full object-cover object-center group-hover:scale-105 transition duration-500" />
+                <span class="absolute top-2.5 left-2.5 bg-espresso/80 text-ivory text-[10px] font-medium px-2 py-0.5 rounded-full backdrop-blur-sm">Welcoming Colin</span>
+              </div>
+              <span class="inline-block text-[11px] font-bold uppercase tracking-widest text-sage-700 bg-sage-100 px-2.5 py-1 rounded-full mb-2">Welcoming Our Son Colin</span>
+              <h3 class="font-wedding text-2xl font-semibold text-espresso">Growing Our Family with Colin</h3>
+              <p class="text-xs sm:text-sm text-espresso/75 mt-1.5 leading-relaxed">
+                Our greatest adventure of all—welcoming our sweet boy Colin into the world and watching him grow, bringing endless love, laughter, and joy to our family.
+              </p>
+            </div>
+
+            <div class="bg-white border border-champagne rounded-2xl p-5 shadow-sm group">
+              <div class="relative h-44 overflow-hidden rounded-xl mb-3 cursor-pointer lightbox-trigger" data-photo-src="assets/063A3540.jpg" data-photo-title="Visiting Family in Pittsburgh" data-photo-badge="2022 • Pittsburgh, PA" data-photo-caption="Visiting Drew’s family in Pittsburgh for a family photo shoot overlooking the city skyline.">
+                <img src="assets/063A3540.jpg" alt="Visiting Drew's family in Pittsburgh for a family photo shoot" class="w-full h-full object-cover object-center group-hover:scale-105 transition duration-500" />
+                <span class="absolute top-2.5 left-2.5 bg-espresso/80 text-ivory text-[10px] font-medium px-2 py-0.5 rounded-full backdrop-blur-sm">Pittsburgh, PA</span>
+              </div>
+              <span class="inline-block text-[11px] font-bold uppercase tracking-widest text-gold-600 bg-linen px-2.5 py-1 rounded-full mb-2">2022 • Pittsburgh, PA</span>
+              <h3 class="font-wedding text-2xl font-semibold text-espresso">Visiting Family in Pittsburgh</h3>
+              <p class="text-xs sm:text-sm text-espresso/75 mt-1.5 leading-relaxed">
+                Visiting Drew’s family in Pittsburgh for a special family photo shoot overlooking the city skyline.
+              </p>
+            </div>
+
+            <div class="bg-white border border-champagne rounded-2xl p-5 shadow-sm group">
+              <div class="relative h-44 overflow-hidden rounded-xl mb-3 cursor-pointer lightbox-trigger" data-photo-src="assets/IMG_0732.jpg" data-photo-title="French Wine & Parisian Views" data-photo-badge="2024 • Paris, France" data-photo-caption="Exploring historic streets, cafés, and the iconic Louvre glass pyramid across Paris and Bordeaux, France.">
+                <img src="assets/IMG_0732.jpg" alt="Paris and the Louvre" class="w-full h-full object-cover object-center group-hover:scale-105 transition duration-500" />
+                <span class="absolute top-2.5 left-2.5 bg-espresso/80 text-ivory text-[10px] font-medium px-2 py-0.5 rounded-full backdrop-blur-sm">Paris & Bordeaux</span>
+              </div>
+              <span class="inline-block text-[11px] font-bold uppercase tracking-widest text-sage-700 bg-sage-100 px-2.5 py-1 rounded-full mb-2">2024 • Paris &amp; Bordeaux</span>
+              <h3 class="font-wedding text-2xl font-semibold text-espresso">French Wine &amp; Parisian Views</h3>
+              <p class="text-xs sm:text-sm text-espresso/75 mt-1.5 leading-relaxed">
+                Exploring historic streets, cafés, and vineyards across Paris and Bordeaux, France—continuing a decade of shared travel memories.
+              </p>
+            </div>
+
+            <div class="bg-white border border-champagne rounded-2xl p-5 shadow-sm group">
+              <div class="relative h-44 overflow-hidden rounded-xl mb-3 cursor-pointer lightbox-trigger" data-photo-src="assets/disneyland_willems.jpg" data-photo-title="Disneyland Adventures" data-photo-badge="Disneyland" data-photo-caption="Making magical memories at Disneyland—sharing rides, laughs, and unforgettable family adventures!">
+                <img src="assets/disneyland_willems.jpg" alt="Family at Disneyland" class="w-full h-full object-cover object-center group-hover:scale-105 transition duration-500" />
+                <span class="absolute top-2.5 left-2.5 bg-espresso/80 text-ivory text-[10px] font-medium px-2 py-0.5 rounded-full backdrop-blur-sm">Disneyland</span>
+              </div>
+              <span class="inline-block text-[11px] font-bold uppercase tracking-widest text-gold-600 bg-linen px-2.5 py-1 rounded-full mb-2">Disneyland Adventures</span>
+              <h3 class="font-wedding text-2xl font-semibold text-espresso">Family Trips &amp; Disney Magic</h3>
+              <p class="text-xs sm:text-sm text-espresso/75 mt-1.5 leading-relaxed">
+                Making magical memories at Disneyland—sharing rides, laughs, and unforgettable family adventures!
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Multi-Page Quick Directory Cards -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+          <div class="card-wedding rounded-2xl p-5 flex flex-col justify-between">
+            <div>
+              <span class="inline-block text-xs uppercase tracking-widest text-gold-600 font-semibold mb-1.5">01 • Schedule</span>
+              <h3 class="font-wedding text-2xl font-semibold text-espresso mb-2">Weekend Events</h3>
+              <p class="text-xs text-espresso/75 leading-relaxed mb-4">
+                <strong>Friday night (5:00 PM+)</strong> welcome gathering at our house in Urbandale + <strong>Saturday (11 AM – 4 PM)</strong> at Big Grove Brewery.
+              </p>
+            </div>
+            <button type="button" data-page-target="event" class="nav-trigger text-left text-xs font-semibold text-sage-700 hover:text-sage-800 inline-flex items-center gap-1">
+              View Events <span>→</span>
+            </button>
+          </div>
+
+          <div class="card-wedding rounded-2xl p-5 flex flex-col justify-between">
+            <div>
+              <span class="inline-block text-xs uppercase tracking-widest text-gold-600 font-semibold mb-1.5">02 • Memories</span>
+              <h3 class="font-wedding text-2xl font-semibold text-espresso mb-2">Photo Album</h3>
+              <p class="text-xs text-espresso/75 leading-relaxed mb-4">
+                Browse our full gallery of wedding portraits, family memories with Colin, and travels over the past 10 years.
+              </p>
+            </div>
+            <button type="button" data-page-target="album" class="nav-trigger text-left text-xs font-semibold text-sage-700 hover:text-sage-800 inline-flex items-center gap-1">
+              Open Album <span>→</span>
+            </button>
+          </div>
+
+          <div class="card-wedding rounded-2xl p-5 flex flex-col justify-between">
+            <div>
+              <span class="inline-block text-xs uppercase tracking-widest text-gold-600 font-semibold mb-1.5">03 • Hotels</span>
+              <h3 class="font-wedding text-2xl font-semibold text-espresso mb-2">Travel &amp; Lodging</h3>
+              <p class="text-xs text-espresso/75 leading-relaxed mb-4">
+                Hotels within 5 miles of Big Grove Brewery in Downtown Des Moines, plus West Des Moines picks near Jordan Creek.
+              </p>
+            </div>
+            <button type="button" data-page-target="lodging" class="nav-trigger text-left text-xs font-semibold text-sage-700 hover:text-sage-800 inline-flex items-center gap-1">
+              Explore Hotels <span>→</span>
+            </button>
+          </div>
+
+          <div class="card-wedding rounded-2xl p-5 flex flex-col justify-between">
+            <div>
+              <span class="inline-block text-xs uppercase tracking-widest text-gold-600 font-semibold mb-1.5">04 • Explore DSM</span>
+              <h3 class="font-wedding text-2xl font-semibold text-espresso mb-2">Things to Do</h3>
+              <p class="text-xs text-espresso/75 leading-relaxed mb-4">
+                Saturday morning Downtown Farmers’ Market, local craft breweries &amp; patios, Blank Park Zoo, and Historic East Village shopping.
+              </p>
+            </div>
+            <button type="button" data-page-target="things-to-do" class="nav-trigger text-left text-xs font-semibold text-sage-700 hover:text-sage-800 inline-flex items-center gap-1">
+              See Local Guide <span>→</span>
+            </button>
+          </div>
+
+          <div class="card-wedding rounded-2xl p-5 flex flex-col justify-between bg-sage-50/60 border-sage-500/30">
+            <div>
+              <span class="inline-block text-xs uppercase tracking-widest text-sage-700 font-semibold mb-1.5">05 • Reply</span>
+              <h3 class="font-wedding text-2xl font-semibold text-espresso mb-2">RSVP Online</h3>
+              <p class="text-xs text-espresso/75 leading-relaxed mb-4">
+                Let us know if you’re joining us on Friday night, Saturday afternoon, or both!
+              </p>
+            </div>
+            <button type="button" data-page-target="rsvp" class="nav-trigger text-left text-xs font-semibold text-sage-700 hover:text-sage-800 inline-flex items-center gap-1">
+              Go to RSVP <span>→</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== PAGE 2: WEEKEND EVENTS (FRIDAY NIGHT & SATURDAY PARTY) ==================== -->
+    <section id="page-event" class="page-section hidden">
+      <div class="bg-linen border-b border-champagne py-12 px-4 text-center">
+        <span class="text-xs uppercase tracking-[0.25em] text-gold-600 font-semibold">Friday, July 9 &amp; Saturday, July 10, 2027</span>
+        <h1 class="font-wedding text-4xl sm:text-6xl font-semibold text-espresso mt-2">Weekend Events &amp; Details</h1>
+        <p class="text-espresso/75 max-w-2xl mx-auto mt-2 text-sm sm:text-base">
+          Whether you’re arriving in town on Friday evening or joining us on Saturday afternoon at Big Grove Brewery, here is everything you need to know for the weekend.
+        </p>
+      </div>
+
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 py-12 space-y-12">
+
+        <!-- EVENT 1: FRIDAY NIGHT WELCOME GATHERING AT OUR HOUSE (Family Portrait + Wedding Party Photo) -->
+        <div class="card-wedding rounded-2xl overflow-hidden grid grid-cols-1 lg:grid-cols-12 border-l-4 border-l-gold-500">
+          <div class="lg:col-span-5 flex flex-col bg-linen">
+            <img src="assets/Des Moines_ Adel Photographer-5103_Original.JPG" alt="Drew, Hannah, and Colin at home in Iowa" class="w-full h-48 sm:h-52 object-cover object-center max-w-full cursor-pointer lightbox-trigger flex-shrink-0" data-photo-src="assets/Des Moines_ Adel Photographer-5103_Original.JPG" data-photo-title="Drew, Hannah &amp; Colin at Home in Iowa" data-photo-badge="Urbandale, IA" data-photo-caption="We can't wait to welcome everyone to our home in Urbandale on Friday evening!" />
+            <div class="p-1 bg-champagne/40 flex-1 flex flex-col min-h-0">
+              <img src="assets/IMG_3427.jpg" alt="Hannah, Colin, and Ellie" class="w-full h-full flex-1 min-h-[240px] sm:min-h-[280px] lg:min-h-0 object-cover object-[center_15%] rounded-b-xl cursor-pointer lightbox-trigger" data-photo-src="assets/IMG_3427.jpg" data-photo-title="Hannah, Colin &amp; Ellie" data-photo-badge="Family Time" data-photo-caption="Hannah and Colin with Ellie on the Big Grove patio!" />
+            </div>
+          </div>
+          <div class="lg:col-span-7 p-6 sm:p-8 flex flex-col justify-between">
+            <div>
+              <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+                <span class="text-xs uppercase tracking-widest text-gold-600 font-bold">Event 01 • Friday Evening Welcome</span>
+                <span class="text-xs bg-amber-100/80 text-amber-900 px-3 py-1 rounded-full font-semibold">Friday, July 9, 2027 • Starting at 5:00 PM CDT</span>
+              </div>
+              <h2 class="font-wedding text-3xl sm:text-4xl font-semibold text-espresso">
+                Friday Night Welcome Gathering at Our House
+              </h2>
+              <p class="text-sm font-medium text-sage-700 mt-1">Drew &amp; Hannah’s Home • 5109 165th Cir, Urbandale, IA 50323</p>
+              <p class="text-sm sm:text-base text-espresso/80 mt-3 leading-relaxed">
+                We want to welcome anyone who will be in town on Friday evening to come join us at our house! Drop by anytime starting at <strong>5:00 PM</strong>—the kids can play, we’ll have food and drinks ready, and we can kick off the anniversary weekend together in a relaxed backyard setting.
+              </p>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-5 text-sm text-espresso/85 bg-ivory p-4 rounded-xl border border-champagne">
+                <div class="space-y-1.5">
+                  <p><strong>Date &amp; Time:</strong> Friday, July 9, 2027 • Starting at 5:00 PM CDT</p>
+                  <p><strong>Address:</strong> 5109 165th Cir, Urbandale, IA 50323</p>
+                  <p><strong>What to Expect:</strong> Food, drinks, and plenty of room for the kids to play</p>
+                </div>
+                <div class="space-y-1.5">
+                  <p><strong>Drive from Jordan Creek Hotels:</strong> ~10 minutes north via 156th St / Douglas Pkwy</p>
+                  <p><strong>Drive from Downtown Hotels:</strong> ~18 minutes west via I-235 W</p>
+                  <p><strong>Attire:</strong> Come as you are / casual summer</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-6 flex flex-wrap gap-3">
+              <a href="https://www.google.com/maps/dir//5109+165th+Cir,+Urbandale,+IA+50323" target="_blank" rel="noopener noreferrer" class="px-4 py-2.5 rounded-xl bg-sage-600 hover:bg-sage-700 text-white text-xs sm:text-sm font-medium transition">
+                Get Google Maps Directions ↗
+              </a>
+              <button id="copy-home-address-btn" type="button" class="px-4 py-2.5 rounded-xl bg-linen hover:bg-champagne text-espresso text-xs sm:text-sm font-medium transition">
+                Copy Our Home Address
+              </button>
+              <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Drew+%26+Hannah%27s+Friday+Night+Welcome+Gathering&dates=20270709T220000Z/20270710T020000Z&details=Casual+Friday+evening+welcome+gathering+at+Drew+%26+Hannah%27s+house%21+Kids+can+play+and+we%27ll+have+food+and+drinks+starting+at+5%3A00+PM.&location=5109+165th+Cir%2C+Urbandale%2C+IA+50323" target="_blank" rel="noopener noreferrer" class="px-4 py-2.5 rounded-xl border border-champagne hover:border-gold-500 text-espresso text-xs sm:text-sm font-medium transition">
+                Add Friday Night to Google Calendar ↗
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- EVENT 2: SATURDAY 10-YEAR ANNIVERSARY PARTY AT BIG GROVE BREWERY -->
+        <div class="card-wedding rounded-2xl overflow-hidden grid grid-cols-1 lg:grid-cols-12 border-l-4 border-l-sage-600">
+          <div class="lg:col-span-5 flex flex-col bg-linen">
+            <img src="assets/big-grove-venue.jpg" alt="Big Grove Brewery taproom and outdoor patio in Des Moines" class="w-full h-56 object-cover max-w-full" />
+            <div class="grid grid-cols-2 gap-1 p-1 bg-champagne/40 flex-grow">
+              <img src="assets/beer.JPG" alt="Drew with craft beers at Walking Tree Brewery in Vero Beach, FL" class="w-full h-36 object-cover object-[center_35%] rounded-bl-xl cursor-pointer lightbox-trigger" data-photo-src="assets/beer.JPG" data-photo-title="Craft Beers at Walking Tree Brewery" data-photo-badge="Cheers!" data-photo-caption="Drew ready to celebrate with great craft brews at Walking Tree Brewery in Vero Beach, FL!" />
+              <img src="assets/beer2.jpg" alt="Hannah toasting with a celebration drink" class="w-full h-36 object-cover object-[center_35%] cursor-pointer lightbox-trigger" data-photo-src="assets/beer2.jpg" data-photo-title="Cheers to 10 Years!" data-photo-badge="Cheers!" data-photo-caption="Hannah raising a glass for an easygoing afternoon of drinks, food, and music!" />
+            </div>
+          </div>
+          <div class="lg:col-span-7 p-6 sm:p-8 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between gap-2 flex-wrap mb-2">
+                <span class="text-xs uppercase tracking-widest text-sage-700 font-bold">Event 02 • The Anniversary Party</span>
+                <span class="text-xs bg-sage-100 text-sage-800 px-3 py-1 rounded-full font-semibold">Saturday, July 10, 2027 • 11:00 AM – 4:00 PM CDT</span>
+              </div>
+              <h2 class="font-wedding text-3xl sm:text-4xl font-semibold text-espresso">
+                <a href="https://biggrove.com/pages/des-moines-taproom" target="_blank" rel="noopener noreferrer" class="hover:text-sage-700 transition">10-Year Anniversary Party at Big Grove Brewery</a>
+              </h2>
+              <p class="text-sm font-medium text-sage-700 mt-1">555 17th St, Des Moines, IA 50309 • Historic Sherman Hill / Western Gateway</p>
+              <p class="text-sm sm:text-base text-espresso/80 mt-3 leading-relaxed">
+                Join us on Saturday from <strong>11:00 AM to 4:00 PM</strong> at Big Grove Brewery in downtown Des Moines! We’re keeping the afternoon relaxed with no rigid schedule—just five fun hours together with <strong>live music, food, drinks, and activities for kids</strong>.
+              </p>
+
+              <!-- 3 Highlight Pills -->
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-5">
+                <div class="bg-linen/70 border border-champagne rounded-xl p-3.5">
+                  <span class="block text-xs font-bold uppercase tracking-wider text-sage-700">🎶 Live Music</span>
+                  <p class="text-xs text-espresso/75 mt-1">Enjoy live music and great vibes indoors and out on the patio.</p>
+                </div>
+                <div class="bg-linen/70 border border-champagne rounded-xl p-3.5">
+                  <span class="block text-xs font-bold uppercase tracking-wider text-sage-700">🍔 Taproom Food</span>
+                  <p class="text-xs text-espresso/75 mt-1">Delicious food for adults and kids, including vegetarian and gluten-friendly options.</p>
+                </div>
+                <div class="bg-linen/70 border border-champagne rounded-xl p-3.5">
+                  <span class="block text-xs font-bold uppercase tracking-wider text-sage-700">🍻 Craft Drinks</span>
+                  <p class="text-xs text-espresso/75 mt-1">House-brewed beers, ciders, wines, cocktails, and non-alcoholic beverages.</p>
+                </div>
+              </div>
+
+              <div class="mt-5 space-y-1.5 text-sm text-espresso/85 bg-ivory p-4 rounded-xl border border-champagne">
+                <p><strong>Address:</strong> 555 17th St, Des Moines, IA 50309</p>
+                <p><strong>Date &amp; Time:</strong> Saturday, July 10, 2027 • 11:00 AM – 4:00 PM CDT (Open-house style—no rigid itinerary!)</p>
+                <p><strong>Parking:</strong> Free on-site parking lot + free surrounding street parking</p>
+              </div>
+            </div>
+
+            <div class="mt-6 flex flex-wrap gap-3">
+              <a href="https://www.google.com/maps/dir/555+17th+St,+Des+Moines,+IA+50309,+USA/555+17th+St,+Des+Moines,+IA+50309,+USA" target="_blank" rel="noopener noreferrer" class="px-4 py-2.5 rounded-xl bg-sage-600 hover:bg-sage-700 text-white text-xs sm:text-sm font-medium transition">
+                Get Google Maps Directions ↗
+              </a>
+              <button id="copy-venue-address-btn" type="button" class="px-4 py-2.5 rounded-xl bg-linen hover:bg-champagne text-espresso text-xs sm:text-sm font-medium transition">
+                Copy Venue Address
+              </button>
+              <a href="https://biggrove.com/pages/des-moines-taproom" target="_blank" rel="noopener noreferrer" class="px-4 py-2.5 rounded-xl border border-champagne hover:border-gold-500 text-espresso text-xs sm:text-sm font-medium transition">
+                Big Grove Website ↗
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Event FAQ Accordion -->
+        <div class="bg-linen/60 border border-champagne rounded-2xl p-6 sm:p-8">
+          <div class="text-center max-w-xl mx-auto mb-6">
+            <span class="text-xs uppercase tracking-[0.25em] text-gold-600 font-semibold">Good to Know</span>
+            <h2 class="font-wedding text-3xl font-semibold text-espresso mt-1">Frequently Asked Questions</h2>
+          </div>
+          <div class="space-y-3 max-w-3xl mx-auto">
+            <div class="bg-white border border-champagne rounded-xl overflow-hidden">
+              <button type="button" data-faq-id="faq-1" class="faq-toggle w-full px-5 py-4 text-left flex items-center justify-between font-medium text-sm text-espresso hover:bg-ivory transition">
+                <span>Are kids invited to both Friday night and Saturday?</span>
+                <span class="faq-icon text-gold-600 font-bold text-lg">−</span>
+              </button>
+              <div id="faq-1" class="px-5 pb-4 text-sm text-espresso/75 leading-relaxed">
+                Yes! Kids are very welcome at both gatherings. On Friday night (starting at 5:00 PM) at our house in Urbandale, kids can play while everyone hangs out and enjoys food and drinks. On Saturday (11:00 AM – 4:00 PM), Big Grove Brewery is super family-friendly and welcoming for all ages.
+              </div>
+            </div>
+
+            <div class="bg-white border border-champagne rounded-xl overflow-hidden">
+              <button type="button" data-faq-id="faq-2" class="faq-toggle w-full px-5 py-4 text-left flex items-center justify-between font-medium text-sm text-espresso hover:bg-ivory transition">
+                <span>Is there a set schedule for Saturday at Big Grove Brewery?</span>
+                <span class="faq-icon text-gold-600 font-bold text-lg">+</span>
+              </button>
+              <div id="faq-2" class="hidden px-5 pb-4 text-sm text-espresso/75 leading-relaxed">
+                There’s no formal agenda! We have the space from <strong>11:00 AM to 4:00 PM</strong>. The band will be playing from <strong>1:00 PM to 3:00 PM</strong>, but otherwise there is no set schedule—just food, drinks, and plenty of time to catch up and celebrate together at an easygoing pace.
+              </div>
+            </div>
+
+            <div class="bg-white border border-champagne rounded-xl overflow-hidden">
+              <button type="button" data-faq-id="faq-3" class="faq-toggle w-full px-5 py-4 text-left flex items-center justify-between font-medium text-sm text-espresso hover:bg-ivory transition">
+                <span>What should we wear?</span>
+                <span class="faq-icon text-gold-600 font-bold text-lg">+</span>
+              </button>
+              <div id="faq-3" class="hidden px-5 pb-4 text-sm text-espresso/75 leading-relaxed">
+                <strong>Casual / Summer Festive!</strong> Come completely casual for Friday night at our house, and wear comfortable summer attire (sundresses, polos, short-sleeve button-downs, or nice shorts) for Saturday afternoon at Big Grove.
+              </div>
+            </div>
+
+            <div class="bg-white border border-champagne rounded-xl overflow-hidden">
+              <button type="button" data-faq-id="faq-4" class="faq-toggle w-full px-5 py-4 text-left flex items-center justify-between font-medium text-sm text-espresso hover:bg-ivory transition">
+                <span>Should we bring a gift?</span>
+                <span class="faq-icon text-gold-600 font-bold text-lg">+</span>
+              </button>
+              <div id="faq-4" class="hidden px-5 pb-4 text-sm text-espresso/75 leading-relaxed">
+                No gifts, please! Having our favorite people together in Iowa is the best 10-year anniversary gift we could ask for.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom Page Nav -->
+        <div class="flex items-center justify-between pt-4 border-t border-champagne">
+          <button type="button" data-page-target="home" class="nav-trigger text-sm font-medium text-espresso/70 hover:text-espresso">← Back to Our Celebration</button>
+          <button type="button" data-page-target="album" class="nav-trigger px-5 py-2.5 rounded-full bg-sage-600 hover:bg-sage-700 text-white text-sm font-medium transition">Next: Photo Album →</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== PAGE 3: PHOTO ALBUM (NEW DEDICATED ALBUM PAGE) ==================== -->
+    <section id="page-album" class="page-section hidden">
+      <div class="bg-linen border-b border-champagne py-12 px-4 text-center">
+        <span class="text-xs uppercase tracking-[0.25em] text-gold-600 font-semibold">July 1, 2017 – 2027 • Ten Years of Memories</span>
+        <h1 class="font-wedding text-4xl sm:text-6xl font-semibold text-espresso mt-2">Our Photo Album</h1>
+        <p class="text-espresso/75 max-w-2xl mx-auto mt-2 text-sm sm:text-base">
+          From our wedding day along the Mississippi River in Dubuque to family life with Colin and adventures across the world—click any photo below to view it full-screen.
+        </p>
+      </div>
+
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 py-12 space-y-10">
+
+        <!-- Photo Album Info Bar -->
+        <div class="bg-white border border-champagne rounded-2xl px-6 py-4 shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div class="flex items-center gap-3">
+            <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-sage-100 text-sage-800 text-sm font-semibold">📸</span>
+            <span class="text-sm font-medium text-espresso/90">
+              Showing our life over the years • <strong id="album-total-count" class="text-sage-800">34</strong> photos
+            </span>
+          </div>
+          <span class="text-xs text-espresso/60 italic">Click any photo to view full size</span>
+        </div>
+
+        <!-- Dynamic Photo Album Grid -->
+        <div id="album-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+
+        <!-- Bottom Page Nav -->
+        <div class="flex items-center justify-between pt-4 border-t border-champagne">
+          <button type="button" data-page-target="event" class="nav-trigger text-sm font-medium text-espresso/70 hover:text-espresso">← Back to Weekend Events</button>
+          <button type="button" data-page-target="lodging" class="nav-trigger px-5 py-2.5 rounded-full bg-sage-600 hover:bg-sage-700 text-white text-sm font-medium transition">Next: Travel &amp; Lodging →</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== PAGE 4: TRAVEL & LODGING ==================== -->
+    <section id="page-lodging" class="page-section hidden">
+      <div class="bg-linen border-b border-champagne py-12 px-4 text-center">
+        <span class="text-xs uppercase tracking-[0.25em] text-gold-600 font-semibold">Where to Stay &amp; Getting Here</span>
+        <h1 class="font-wedding text-4xl sm:text-6xl font-semibold text-espresso mt-2">Travel &amp; Lodging</h1>
+        <p class="text-espresso/75 max-w-2xl mx-auto mt-2 text-sm sm:text-base">
+          We’ve curated two convenient hotel zones for out-of-town guests: <strong>within a 5-mile radius of Big Grove Brewery</strong> (Downtown / Drake / Sherman Hill) and <strong>West Des Moines near Jordan Creek Town Center</strong> (just ~10 minutes from our house in Urbandale for Friday night and ~18 minutes from Big Grove!).
+        </p>
+      </div>
+
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 py-12 space-y-12">
+        <!-- Travel Overview Cards (Airport + Two Zones) -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+          <div class="card-wedding rounded-2xl p-6">
+            <span class="text-xs font-semibold uppercase tracking-widest text-gold-600">Flying In</span>
+            <h3 class="font-wedding text-2xl font-semibold text-espresso mt-1">Des Moines Airport (DSM)</h3>
+            <p class="text-xs text-espresso/75 mt-2 leading-relaxed">
+              <strong>5800 Fleur Dr, Des Moines, IA 50321</strong>. Located just <strong>5.6 miles (13 minutes)</strong> straight north up Fleur Drive to Big Grove Brewery and Downtown hotels, or <strong>18 minutes</strong> via I-235 to West Des Moines / Jordan Creek and Urbandale.
+            </p>
+            <a href="https://www.flydsm.com/" target="_blank" rel="noopener noreferrer" class="inline-block mt-3 text-xs font-semibold text-sage-700 hover:underline">
+              Visit FlyDSM.com ↗
+            </a>
+          </div>
+
+          <div class="card-wedding rounded-2xl p-6">
+            <span class="text-xs font-semibold uppercase tracking-widest text-sage-700">Zone 1 • Closest to Saturday Party</span>
+            <h3 class="font-wedding text-2xl font-semibold text-espresso mt-1">Within 5 Miles of Big Grove</h3>
+            <p class="text-xs text-espresso/75 mt-2 leading-relaxed">
+              Stay 0.8 to 1.5 miles from <strong>Big Grove Brewery</strong> in Downtown Des Moines or near Drake University. Ideal if you want a 4–6 minute Uber/drive to Saturday’s party and walkability to the Saturday morning Farmers’ Market!
+            </p>
+            <button type="button" data-hotel-zone="downtown" class="hotel-zone-btn mt-3 text-xs font-semibold text-sage-700 hover:underline">
+              Filter to Within 5 Miles (5 Hotels) →
+            </button>
+          </div>
+
+          <div class="card-wedding rounded-2xl p-6">
+            <span class="text-xs font-semibold uppercase tracking-widest text-gold-600">Zone 2 • Closest to Friday Welcome</span>
+            <h3 class="font-wedding text-2xl font-semibold text-espresso mt-1">West Des Moines / Jordan Creek</h3>
+            <p class="text-xs text-espresso/75 mt-2 leading-relaxed">
+              Located <strong>~10 minutes south of our house in Urbandale</strong> (perfect for Friday night’s 5:00 PM welcome gathering!) and an easy 16–18 minute freeway drive via I-235 E to Big Grove on Saturday.
+            </p>
+            <button type="button" data-hotel-zone="jordancreek" class="hotel-zone-btn mt-3 text-xs font-semibold text-sage-700 hover:underline">
+              Filter to Jordan Creek Area (5 Hotels) →
+            </button>
+          </div>
+        </div>
+
+        <!-- Interactive Hotel Filter & Sort Bar -->
+        <div class="bg-white border border-champagne rounded-2xl p-4 sm:p-5 shadow-sm space-y-4">
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <!-- Zone Filter Pills -->
+            <div class="flex flex-wrap gap-2" role="group" aria-label="Hotel Zone Filter">
+              <button type="button" data-hotel-zone="all" class="hotel-zone-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-medium bg-sage-600 text-white transition">
+                All Hotels (10)
+              </button>
+              <button type="button" data-hotel-zone="downtown" class="hotel-zone-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-medium bg-linen text-espresso hover:bg-champagne transition">
+                Within 5 Miles of Big Grove (5)
+              </button>
+              <button type="button" data-hotel-zone="jordancreek" class="hotel-zone-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-medium bg-linen text-espresso hover:bg-champagne transition">
+                West Des Moines / Jordan Creek (5)
+              </button>
+            </div>
+
+            <!-- Sort Select -->
+            <div class="flex items-center gap-2">
+              <label for="hotel-sort-select" class="text-xs font-semibold uppercase tracking-wider text-espresso/70">Sort By:</label>
+              <select id="hotel-sort-select" class="bg-ivory border border-champagne rounded-xl px-3 py-2 text-xs sm:text-sm font-medium text-espresso focus:outline-none focus:border-sage-600">
+                <option value="distance">Closest to Big Grove Brewery</option>
+                <option value="rating">Highest Guest Rating</option>
+                <option value="price">Lowest Estimated Rate</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Amenity Checkboxes -->
+          <div class="flex flex-wrap items-center gap-4 pt-3 border-t border-champagne/60 text-xs sm:text-sm">
+            <span class="text-xs font-semibold uppercase tracking-wider text-espresso/60">Quick Perks:</span>
+            <label class="inline-flex items-center gap-1.5 cursor-pointer">
+              <input type="checkbox" id="filter-breakfast" class="rounded border-champagne text-sage-600 focus:ring-sage-500" />
+              <span>Free Breakfast</span>
+            </label>
+            <label class="inline-flex items-center gap-1.5 cursor-pointer">
+              <input type="checkbox" id="filter-parking" class="rounded border-champagne text-sage-600 focus:ring-sage-500" />
+              <span>Free Parking</span>
+            </label>
+            <label class="inline-flex items-center gap-1.5 cursor-pointer">
+              <input type="checkbox" id="filter-pool" class="rounded border-champagne text-sage-600 focus:ring-sage-500" />
+              <span>Indoor Pool</span>
+            </label>
+            <label class="inline-flex items-center gap-1.5 cursor-pointer">
+              <input type="checkbox" id="filter-suites" class="rounded border-champagne text-sage-600 focus:ring-sage-500" />
+              <span>Suites / Family Layout</span>
+            </label>
+            <span id="hotel-count-badge" class="ml-auto text-xs font-semibold text-sage-700">Showing 10 of 10 hotels</span>
+          </div>
+        </div>
+
+        <!-- Dynamic Hotel Cards Grid -->
+        <div id="hotels-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6"></div>
+
+        <!-- Bottom Page Nav -->
+        <div class="flex items-center justify-between pt-4 border-t border-champagne">
+          <button type="button" data-page-target="album" class="nav-trigger text-sm font-medium text-espresso/70 hover:text-espresso">← Back to Photo Album</button>
+          <button type="button" data-page-target="things-to-do" class="nav-trigger px-5 py-2.5 rounded-full bg-sage-600 hover:bg-sage-700 text-white text-sm font-medium transition">Next: Things to Do →</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== PAGE 5: THINGS TO DO ==================== -->
+    <section id="page-things-to-do" class="page-section hidden">
+      <div class="bg-linen border-b border-champagne py-12 px-4 text-center">
+        <span class="text-xs uppercase tracking-[0.25em] text-gold-600 font-semibold">Explore Greater Des Moines</span>
+        <h1 class="font-wedding text-4xl sm:text-6xl font-semibold text-espresso mt-2">Things to Do</h1>
+        <p class="text-espresso/75 max-w-2xl mx-auto mt-2 text-sm sm:text-base">
+          Between Friday night at our house and Saturday afternoon (11:00 AM – 4:00 PM) at Big Grove Brewery, you’ll have time on Saturday morning, Saturday evening, and Sunday to explore our favorite spots around Des Moines and West Des Moines.
+        </p>
+      </div>
+
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 py-12 space-y-10">
+        <!-- Scenic Des Moines Banner Card -->
+        <div class="card-wedding rounded-2xl overflow-hidden grid grid-cols-1 lg:grid-cols-12">
+          <div class="lg:col-span-5 grid grid-cols-2 gap-1 bg-linen">
+            <img src="assets/des-moines-skyline.jpg" alt="Summer view of Downtown Des Moines skyline" class="w-full h-full min-h-[240px] object-cover max-w-full col-span-1" />
+            <img src="assets/drew-hannah-des-moines-family.jpg" alt="Drew, Hannah, and son in Downtown Des Moines by the Women of Achievement Bridge" class="w-full h-full min-h-[240px] object-cover object-center max-w-full col-span-1 cursor-pointer lightbox-trigger" data-photo-src="assets/drew-hannah-des-moines-family.jpg" data-photo-title="Welcome to Our Home City!" data-photo-badge="Des Moines &amp; Urbandale, IA" data-photo-caption="We moved to the Des Moines metro in 2022 and love sharing our favorite local spots with family and friends." />
+          </div>
+          <div class="lg:col-span-7 p-6 sm:p-8 flex flex-col justify-center">
+            <span class="text-xs font-semibold uppercase tracking-widest text-gold-600">Weekend Itinerary Ideas</span>
+            <h2 class="font-wedding text-3xl font-semibold text-espresso mt-1">How to Enjoy the Full July 9–11 Weekend</h2>
+            <ul class="mt-3 space-y-2 text-sm text-espresso/80">
+              <li>• <strong>Friday Evening (Starting at 5:00 PM):</strong> Come over to our house in Urbandale (<code>5109 165th Cir</code>) for food, drinks, and backyard play time for the kids!</li>
+              <li>• <strong>Saturday Morning (8:30 AM – 10:30 AM):</strong> Grab iced coffee and breakfast burritos at the famous <a href="https://www.catchdesmoines.com/things-to-do/itineraries/summer-things-to-do/" target="_blank" rel="noopener noreferrer" class="text-sage-700 underline font-medium">Downtown Farmers’ Market</a> or browse boutiques in the <a href="https://www.raygunsite.com/" target="_blank" rel="noopener noreferrer" class="text-sage-700 underline font-medium">Historic East Village</a>.</li>
+              <li>• <strong>Saturday Midday (11:00 AM – 4:00 PM):</strong> Celebrate with us at <a href="https://biggrove.com/pages/des-moines-taproom" target="_blank" rel="noopener noreferrer" class="text-sage-700 underline font-medium">Big Grove Brewery &amp; Taproom</a> with live music, food, and drinks.</li>
+              <li>• <strong>Saturday Evening / Sunday:</strong> Check out craft beer patios at <a href="https://luabeer.com/" target="_blank" rel="noopener noreferrer" class="text-sage-700 underline font-medium">Lua</a> or <a href="https://confluencebrewing.com/" target="_blank" rel="noopener noreferrer" class="text-sage-700 underline font-medium">Confluence</a>, play arcade games at <a href="https://www.operatingroomarcade.com/" target="_blank" rel="noopener noreferrer" class="text-sage-700 underline font-medium">The Operating Room</a>, stroll <a href="https://www.valleyjunction.com/" target="_blank" rel="noopener noreferrer" class="text-sage-700 underline font-medium">Valley Junction</a>, or take the kids to <a href="https://www.blankparkzoo.com/" target="_blank" rel="noopener noreferrer" class="text-sage-700 underline font-medium">Blank Park Zoo</a>!</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Activity Category Filter Buttons -->
+        <div class="flex flex-wrap items-center justify-between gap-3">
+          <div class="flex flex-wrap gap-2" role="group" aria-label="Activity Category Filter">
+            <button type="button" data-activity-cat="all" class="activity-cat-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-medium bg-sage-600 text-white transition">
+              All Recommendations (17)
+            </button>
+            <button type="button" data-activity-cat="nearby" class="activity-cat-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-medium bg-linen text-espresso hover:bg-champagne transition">
+              Near Big Grove / Downtown
+            </button>
+            <button type="button" data-activity-cat="drinks" class="activity-cat-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-medium bg-linen text-espresso hover:bg-champagne transition">
+              Breweries &amp; Drinks
+            </button>
+            <button type="button" data-activity-cat="kids" class="activity-cat-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-medium bg-linen text-espresso hover:bg-champagne transition">
+              Family &amp; Kids Favorites
+            </button>
+            <button type="button" data-activity-cat="west" class="activity-cat-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-medium bg-linen text-espresso hover:bg-champagne transition">
+              West Des Moines / Jordan Creek
+            </button>
+          </div>
+          <a href="https://www.catchdesmoines.com/things-to-do/" target="_blank" rel="noopener noreferrer" class="text-xs font-semibold text-sage-700 hover:underline">
+            More on Catch Des Moines ↗
+          </a>
+        </div>
+
+        <!-- Dynamic Activities Grid -->
+        <div id="activities-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"></div>
+
+        <!-- Bottom Page Nav -->
+        <div class="flex items-center justify-between pt-4 border-t border-champagne">
+          <button type="button" data-page-target="lodging" class="nav-trigger text-sm font-medium text-espresso/70 hover:text-espresso">← Back to Travel &amp; Lodging</button>
+          <button type="button" data-page-target="rsvp" class="nav-trigger px-5 py-2.5 rounded-full bg-sage-600 hover:bg-sage-700 text-white text-sm font-medium transition">Next: RSVP Now →</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== PAGE 6: RSVP & GOOGLE FORM SETUP ==================== -->
+    <section id="page-rsvp" class="page-section hidden">
+      <div class="bg-linen border-b border-champagne py-12 px-4 text-center">
+        <span class="text-xs uppercase tracking-[0.25em] text-gold-600 font-semibold">Kindly Reply by June 1, 2027</span>
+        <h1 class="font-wedding text-4xl sm:text-6xl font-semibold text-espresso mt-2">Celebrate With Us</h1>
+        <p class="text-espresso/75 max-w-2xl mx-auto mt-2 text-sm sm:text-base">
+          Let us know if you and your family can join us for the <strong>Friday Night Welcome Gathering at Our House (July 9, starting at 5:00 PM)</strong>, the <strong>Saturday 10-Year Anniversary Party at Big Grove Brewery (July 10, 11:00 AM – 4:00 PM)</strong>, or both!
+        </p>
+      </div>
+
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 py-12 space-y-10">
+
+        <!-- Photo Trio Keepsake Banner on RSVP Page -->
+        <div class="grid grid-cols-3 gap-3 sm:gap-4">
+          <div class="rounded-2xl overflow-hidden border border-champagne h-36 sm:h-48 shadow-sm cursor-pointer lightbox-trigger" data-photo-src="assets/drew-hannah-colin-disneyland.jpg" data-photo-title="Family Fun at Disneyland" data-photo-badge="Family Adventures" data-photo-caption="Drew, Hannah, and Colin making magical family memories together!">
+            <img src="assets/drew-hannah-colin-disneyland.jpg" alt="Drew, Hannah, and Colin at Disneyland" class="w-full h-full object-cover object-[center_25%] hover:scale-105 transition duration-500" />
+          </div>
+          <div class="rounded-2xl overflow-hidden border border-champagne h-36 sm:h-48 shadow-sm cursor-pointer lightbox-trigger" data-photo-src="assets/drew-hannah-theater-night.jpg" data-photo-title="Date Night at the Theater" data-photo-badge="Date Night" data-photo-caption="Drew and Hannah enjoying a night out at the theater.">
+            <img src="assets/drew-hannah-theater-night.jpg" alt="Drew and Hannah at the theater" class="w-full h-full object-cover object-[center_25%] hover:scale-105 transition duration-500" />
+          </div>
+          <div class="rounded-2xl overflow-hidden border border-champagne h-36 sm:h-48 shadow-sm cursor-pointer lightbox-trigger" data-photo-src="assets/drew-hannah-cruise-dock.jpg" data-photo-title="Adventures at Sea" data-photo-badge="Vacation Adventures" data-photo-caption="Drew and Hannah celebrating and soaking up vacation adventures together.">
+            <img src="assets/drew-hannah-cruise-dock.jpg" alt="Drew and Hannah celebrating by the cruise ship" class="w-full h-full object-cover object-[center_25%] hover:scale-105 transition duration-500" />
+          </div>
+        </div>
+
+        <!-- Primary Backup & Direct Fallback Notice Banner -->
+        <div class="bg-linen/90 border border-champagne rounded-2xl p-4 sm:p-5 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left shadow-sm">
+          <div class="flex items-center gap-3.5">
+            <div class="w-10 h-10 rounded-full bg-sage-100 text-sage-700 flex items-center justify-center flex-shrink-0 text-lg shadow-sm">
+              <svg class="w-5 h-5 text-sage-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+            </div>
+            <div>
+              <p class="text-xs sm:text-sm font-semibold text-espresso">Form taking too long or having trouble viewing?</p>
+              <p class="text-xs text-espresso/70">If the form doesn't load on your browser or device, click to open it directly in Google Forms.</p>
+            </div>
+          </div>
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSdz6pLg6PtJzY8w1Omq-JgNOOc29TnBgBg1OI-hsvLhS6Ae8Q/viewform?usp=dialog" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto px-5 py-2.5 rounded-full bg-sage-600 hover:bg-sage-700 text-white text-xs sm:text-sm font-semibold tracking-wide shadow-sm transition whitespace-nowrap text-center inline-flex items-center justify-center gap-1.5">
+            <span>Open in Google Forms Directly</span>
+            <span>↗</span>
+          </a>
+        </div>
+
+        <!-- Embedded Google Form Container Card -->
+        <div class="card-wedding rounded-3xl p-4 sm:p-8 space-y-6 shadow-md border border-champagne bg-white">
+          <div class="text-center max-w-xl mx-auto space-y-2">
+            <h2 class="font-wedding text-3xl sm:text-4xl font-semibold text-espresso">RSVP for July 9–10, 2027</h2>
+            <p class="text-xs sm:text-sm text-espresso/70 leading-relaxed">
+              Please complete the RSVP form below for you and your family. All submissions go straight to Drew &amp; Hannah's celebration list!
+            </p>
+          </div>
+
+          <!-- Responsive Iframe with Loading Spinner & Graceful Fallback -->
+          <div class="relative w-full rounded-2xl overflow-hidden bg-linen/40 border border-champagne min-h-[900px] sm:min-h-[1050px]">
+            <!-- Loading Indicator Placeholder -->
+            <div id="form-loading-placeholder" class="absolute inset-0 flex flex-col items-center justify-center p-6 text-center space-y-3 z-0 transition-opacity duration-300">
+              <div class="w-9 h-9 border-2 border-sage-600 border-t-transparent rounded-full animate-spin"></div>
+              <p class="font-wedding text-xl text-espresso">Loading Drew &amp; Hannah’s RSVP Form…</p>
+              <p class="text-xs text-espresso/60 max-w-xs">If this takes more than a moment, you can open the form directly:</p>
+              <a href="https://docs.google.com/forms/d/e/1FAIpQLSdz6pLg6PtJzY8w1Omq-JgNOOc29TnBgBg1OI-hsvLhS6Ae8Q/viewform?usp=dialog" target="_blank" rel="noopener noreferrer" class="text-xs font-semibold text-sage-700 hover:underline">
+                Open Official RSVP Form on Google Forms ↗
+              </a>
+            </div>
+
+            <!-- Embedded Google Form Iframe -->
+            <iframe
+              id="google-form-iframe"
+              src="https://docs.google.com/forms/d/e/1FAIpQLSdz6pLg6PtJzY8w1Omq-JgNOOc29TnBgBg1OI-hsvLhS6Ae8Q/viewform?embedded=true"
+              class="relative z-10 w-full h-[950px] sm:h-[1100px] border-0 rounded-2xl bg-white"
+              onload="const p = document.getElementById('form-loading-placeholder'); if (p) { p.classList.add('opacity-0', 'pointer-events-none'); }"
+              title="Drew &amp; Hannah 10-Year Anniversary Celebration RSVP Google Form">
+              <div class="p-8 text-center text-sm text-espresso space-y-3">
+                <p>Your browser does not support embedded frames.</p>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSdz6pLg6PtJzY8w1Omq-JgNOOc29TnBgBg1OI-hsvLhS6Ae8Q/viewform?usp=dialog" target="_blank" rel="noopener noreferrer" class="inline-block px-5 py-2.5 rounded-full bg-sage-600 text-white font-medium">
+                  Click here to open the RSVP form on Google Forms ↗
+                </a>
+              </div>
+            </iframe>
+          </div>
+
+          <!-- Bottom Action Bar & Helpful Links -->
+          <div class="pt-2 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-champagne text-xs">
+            <div class="flex items-center gap-2 text-espresso/70 text-center sm:text-left">
+              <span>Need to change your plans later?</span>
+              <span class="hidden sm:inline">•</span>
+              <span>Submit again anytime or message Drew &amp; Hannah directly.</span>
+            </div>
+            <div class="flex flex-wrap items-center justify-center gap-2.5">
+              <a href="https://docs.google.com/forms/d/e/1FAIpQLSdz6pLg6PtJzY8w1Omq-JgNOOc29TnBgBg1OI-hsvLhS6Ae8Q/viewform?usp=dialog" target="_blank" rel="noopener noreferrer" class="px-4 py-2 rounded-xl bg-linen hover:bg-champagne text-espresso font-medium transition inline-flex items-center gap-1.5">
+                <span>Direct Google Forms Link</span>
+                <span>↗</span>
+              </a>
+              <button id="open-calendar-modal-rsvp" type="button" class="px-4 py-2 rounded-xl bg-sage-600 hover:bg-sage-700 text-white font-medium transition inline-flex items-center gap-1.5 shadow-sm">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2-0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                <span>Add to Calendar (.ics / Google)</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Host Tools (Quick Access to Live Google Sheet for Drew & Hannah) -->
+        <div class="border border-champagne/70 bg-white/70 backdrop-blur-sm rounded-2xl p-4 text-xs shadow-sm">
+          <details class="group">
+            <summary class="cursor-pointer list-none flex items-center justify-between font-semibold text-espresso/75 hover:text-sage-700 transition">
+              <span class="inline-flex items-center gap-2">
+                <svg class="w-4 h-4 text-gold-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                Host Shortcuts: Live RSVP Sheet &amp; Direct Form Link
+              </span>
+              <span class="text-gold-600 group-open:rotate-180 transition-transform text-[10px]">▼</span>
+            </summary>
+            <div class="mt-3 pt-3 border-t border-champagne space-y-2 text-espresso/80">
+              <p>
+                All submissions from guests above appear immediately in your linked Google Sheet:
+              </p>
+              <div class="flex flex-wrap gap-2 pt-1">
+                <a href="https://docs.google.com/spreadsheets/d/1aDtXGQUr074RQ1nj3l4ZhF6s1NqrOTJwRQcmcmoSzO8/edit" target="_blank" rel="noopener noreferrer" class="px-3.5 py-1.5 rounded-lg bg-sage-600 hover:bg-sage-700 text-white font-medium transition inline-flex items-center gap-1">
+                  <span>Open Live RSVP Google Sheet</span>
+                  <span>↗</span>
+                </a>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSdz6pLg6PtJzY8w1Omq-JgNOOc29TnBgBg1OI-hsvLhS6Ae8Q/viewform?usp=dialog" target="_blank" rel="noopener noreferrer" class="px-3.5 py-1.5 rounded-lg bg-linen hover:bg-champagne text-espresso font-medium transition inline-flex items-center gap-1">
+                  <span>Open Direct Google Form</span>
+                  <span>↗</span>
+                </a>
+              </div>
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Wedding-Inspired Footer -->
+  <footer class="bg-linen border-t border-champagne py-10 px-4 mt-12">
+    <div class="max-w-5xl mx-auto text-center space-y-3">
+      <div class="w-11 h-11 rounded-full bg-ivory border border-gold-400 mx-auto overflow-hidden flex items-center justify-center">
+        <img src="assets/Hannah080.JPG" alt="Drew and Hannah" class="w-full h-full object-cover" />
+      </div>
+      <p class="font-wedding text-2xl sm:text-3xl font-semibold text-espresso">Drew &amp; Hannah Wolos</p>
+      <p class="text-xs uppercase tracking-[0.2em] text-gold-600">
+        Married July 1, 2017 • Celebrating July 9–10, 2027 • Urbandale &amp; Des Moines, IA
+      </p>
+      <div class="flex flex-wrap justify-center gap-4 pt-3 text-xs font-medium text-espresso/70">
+        <button type="button" data-page-target="home" class="nav-trigger hover:text-sage-700">Our Celebration</button>
+        <span>•</span>
+        <button type="button" data-page-target="event" class="nav-trigger hover:text-sage-700">Weekend Events</button>
+        <span>•</span>
+        <button type="button" data-page-target="album" class="nav-trigger hover:text-sage-700">Photo Album</button>
+        <span>•</span>
+        <button type="button" data-page-target="lodging" class="nav-trigger hover:text-sage-700">Travel &amp; Lodging</button>
+        <span>•</span>
+        <button type="button" data-page-target="things-to-do" class="nav-trigger hover:text-sage-700">Things to Do</button>
+        <span>•</span>
+        <button type="button" data-page-target="rsvp" class="nav-trigger hover:text-sage-700">RSVP</button>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Application Script -->
+  <script>
+    // Album Photos Dataset (Houses all pictures in assets/ showing our life over the years)
+    const ALBUM_PHOTOS = [
+      {
+        id: 'wedding-hannah080',
+        src: 'assets/Hannah080.JPG',
+        title: 'A Sunny Wedding Day Kiss',
+        badge: 'Wedding Day • July 1, 2017',
+        objectPos: 'object-center',
+        caption: 'Drew & Hannah sharing a kiss under bright July skies along the Mississippi River in Dubuque, Iowa.'
+      },
+      {
+        id: 'wedding-ur23660',
+        src: 'assets/_UR23660.jpg',
+        title: 'Mississippi Riverwalk Portrait',
+        badge: 'Wedding Day • July 1, 2017',
+        objectPos: 'object-top',
+        caption: 'Walking the harbor dock together outside the National Mississippi River Museum in Dubuque.'
+      },
+      {
+        id: 'wedding-hannah190',
+        src: 'assets/Hannah190.JPG',
+        title: 'Showing Off the Wedding Ring!',
+        badge: 'Wedding Day • July 1, 2017',
+        objectPos: 'object-center',
+        caption: 'Hannah beaming and showing off her new ring while Drew and the groomsmen celebrate by the water.'
+      },
+      {
+        id: 'wedding-hannah212',
+        src: 'assets/Hannah212.JPG',
+        title: 'Reception Dance Floor Energy',
+        badge: 'Wedding Day • July 1, 2017',
+        objectPos: 'object-[center_20%]',
+        caption: 'Drew and our family dancing the night away at our wedding reception in Dubuque.'
+      },
+      {
+        id: 'travel-oktoberfest',
+        src: 'assets/IMG_20170929_200839_381.jpg',
+        title: 'Oktoberfest in Munich',
+        badge: 'Honeymoon • Fall 2017',
+        objectPos: 'object-center',
+        caption: 'Raising a stein together inside the historic beer halls of Oktoberfest during our European honeymoon.'
+      },
+      {
+        id: 'travel-salzburg',
+        src: 'assets/IMG_20171001_175454.jpg',
+        title: 'Salzburg Fortress Overlook',
+        badge: 'Honeymoon • Fall 2017',
+        objectPos: 'object-center',
+        caption: 'Admiring the alpine peaks and baroque rooftops from Hohensalzburg Fortress high above Salzburg, Austria.'
+      },
+      {
+        id: 'family-colin-newborn',
+        src: 'assets/IMG_20190427_145655_1.jpg',
+        title: 'Welcoming Baby Colin',
+        badge: 'Growing Family • April 2019',
+        objectPos: 'object-center',
+        caption: 'Our greatest adventure began—welcoming Colin into the world, bundled up in his tiny Penn State Nittany Lions gear.'
+      },
+      {
+        id: 'family-disney-snow-white',
+        src: 'assets/570427389_1003620742_dsnyRes-base_dsnyLoc-reg.jpeg',
+        title: 'Colin & Snow White',
+        badge: 'Walt Disney World • November 2019',
+        objectPos: 'object-center',
+        caption: 'Baby Colin meeting Snow White during his very first trip to Walt Disney World.'
+      },
+      {
+        id: 'family-epcot-germany',
+        src: 'assets/618020838_1057012717_dsnyRes-medium_dsnyLoc-reg.jpeg',
+        title: 'Epcot Germany Pavilion',
+        badge: 'Family Travels • January 2020',
+        objectPos: 'object-center',
+        caption: 'Strolling through the World Showcase in Epcot with baby Colin in his stroller.'
+      },
+      {
+        id: 'family-iowa-pennstate',
+        src: 'assets/IMG_20211009_161219_311.jpg',
+        title: 'Iowa vs. Penn State Football',
+        badge: 'Game Day • October 2021',
+        objectPos: 'object-center',
+        caption: 'Cheering together in the stands at Kinnick Stadium for an electric Iowa vs. Penn State college football game.'
+      },
+      {
+        id: 'fun-costume-night',
+        src: 'assets/IMG_1020.JPG',
+        title: 'Tom Collins & Candy Cann',
+        badge: 'Costume Party • August 2022',
+        objectPos: 'object-center',
+        caption: 'Creative couple costumes—Tom Collins & Candy Cann having fun with friends!'
+      },
+      {
+        id: 'family-wicked-musical',
+        src: 'assets/IMG_1116.jpg',
+        title: 'Wicked at the Theater',
+        badge: 'Family Night • August 2022',
+        objectPos: 'object-center',
+        caption: 'Enjoying an unforgettable evening of Broadway musical magic at Wicked with family.'
+      },
+      {
+        id: 'family-scenic-overlook',
+        src: 'assets/063A3540.jpg',
+        title: 'Visiting Family in Pittsburgh',
+        badge: 'Family Portrait • September 2022',
+        objectPos: 'object-center',
+        caption: 'Visiting Drew’s family in Pittsburgh for a family photo shoot overlooking the city skyline.'
+      },
+      {
+        id: 'family-observation-deck',
+        src: 'assets/IMG_1697.jpg',
+        title: 'Observation Deck High Above',
+        badge: 'Adventures with Colin • October 2022',
+        objectPos: 'object-center',
+        caption: 'Taking in breathtaking 360-degree city views from an observation deck with curious toddler Colin.'
+      },
+      {
+        id: 'fun-disney-halloween',
+        src: 'assets/IMG_1499.JPG',
+        title: 'Disney Halloween Villains',
+        badge: 'Magic Kingdom • Halloween',
+        objectPos: 'object-center',
+        caption: 'Captain Hook, Ursula, and Disney friends dressed up for festive Halloween nights in the Magic Kingdom.'
+      },
+      {
+        id: 'family-des-moines-riverwalk-bridge',
+        src: 'assets/april-and-august-photography-des-moines-3013.jpg',
+        title: 'Des Moines Riverwalk Family Portrait',
+        badge: 'Des Moines, IA • May 2023',
+        objectPos: 'object-center',
+        caption: 'Drew, Hannah, and Colin smiling along the river with the Women of Achievement Bridge arch and downtown skyline.'
+      },
+      {
+        id: 'family-des-moines-skyline-bridge',
+        src: 'assets/drew-hannah-des-moines-family.jpg',
+        title: 'Women of Achievement Bridge Arch',
+        badge: 'Des Moines, IA • May 2023',
+        objectPos: 'object-center',
+        caption: 'A beautiful sunny day by the Des Moines River downtown with Colin, Drew, and Hannah.'
+      },
+      {
+        id: 'travel-disney-christmas',
+        src: 'assets/IMG_2762.jpg',
+        title: 'Cinderella Castle Christmas',
+        badge: 'Walt Disney World • December 2023',
+        objectPos: 'object-center',
+        caption: 'Under the dazzling holiday lights of Cinderella Castle on Main Street, U.S.A.'
+      },
+      {
+        id: 'travel-paris-louvre',
+        src: 'assets/IMG_0732.jpg',
+        title: 'Summer at the Louvre',
+        badge: 'Paris, France • August 2024',
+        objectPos: 'object-center',
+        caption: 'Drew and Hannah standing by the iconic glass pyramid courtyard outside the Musée du Louvre.'
+      },
+      {
+        id: 'travel-disneyland-paris',
+        src: 'assets/IMG_0958.jpg',
+        title: 'Disneyland Paris Castle',
+        badge: 'France Adventure • August 2024',
+        objectPos: 'object-center',
+        caption: 'Making magical family memories in front of Le Château de la Belle au Bois Dormant at Disneyland Paris.'
+      },
+      {
+        id: 'family-cub-scouts',
+        src: 'assets/IMG_1301.jpg',
+        title: 'Cub Scouts',
+        badge: 'Proud Parents • October 2024',
+        objectPos: 'object-center',
+        caption: 'Drew, Hannah, and Colin together at Cub Scouts.'
+      },
+      {
+        id: 'family-des-moines-fall',
+        src: 'assets/Des Moines_ Adel Photographer-5103_Original.JPG',
+        title: 'Autumn Family Portrait in Iowa',
+        badge: 'Home in Iowa • November 2024',
+        objectPos: 'object-center',
+        caption: 'Warm autumn smiles surrounded by golden Iowa foliage with Drew, Hannah, and Colin.'
+      },
+      {
+        id: 'family-topgolf-wdm',
+        src: 'assets/IMG_3731.jpg',
+        title: 'Topgolf West Des Moines Fun',
+        badge: 'Family Afternoon • March 2025',
+        objectPos: 'object-center',
+        caption: 'Hitting golf balls and sharing laughs together at Topgolf right here in West Des Moines.'
+      },
+      {
+        id: 'family-penn-state-shrine',
+        src: 'assets/IMG_2704.jpg',
+        title: 'Nittany Lion Shrine Visit',
+        badge: 'Penn State Pride • June 2025',
+        objectPos: 'object-center',
+        caption: 'Colin climbing on the famous Penn State Nittany Lion Shrine on campus in Happy Valley.'
+      },
+      {
+        id: 'travel-pittsburgh-overlook',
+        src: 'assets/IMG_2803.jpg',
+        title: 'Pittsburgh Three Rivers Overlook',
+        badge: 'Mt. Washington • July 2025',
+        objectPos: 'object-center',
+        caption: 'Taking in panoramic summer views of Pittsburgh’s downtown skyline and the confluence of the Three Rivers.'
+      },
+      {
+        id: 'hannah-colin-ellie',
+        src: 'assets/IMG_3427.jpg',
+        title: 'Hannah, Colin & Ellie',
+        badge: 'Family Time • Fall 2025',
+        objectPos: 'object-[center_15%]',
+        caption: 'Hannah and Colin with Ellie on the Big Grove patio!'
+      },
+      {
+        id: 'travel-bahamas-disney-wish',
+        src: 'assets/IMG_3794.jpg',
+        title: 'Disney Wish at Castaway Cay',
+        badge: 'Bahamas Cruise • January 2026',
+        objectPos: 'object-center',
+        caption: 'Soaking up turquoise waters and sunny Caribbean skies docked at Disney Castaway Cay in the Bahamas.'
+      },
+      {
+        id: 'travel-cruise-dockside-cheers',
+        src: 'assets/drew-hannah-cruise-dock.jpg',
+        title: 'All Aboard the Disney Wish!',
+        badge: 'Disney Cruise • January 2026',
+        objectPos: 'object-center',
+        caption: 'Drew and Hannah striking a pose dockside in front of the Disney Cruise Line ship for their sunny Bahamian getaway.'
+      },
+      {
+        id: 'family-dressed-up',
+        src: 'assets/IMG_4338.jpg',
+        title: 'Dressed Up for the Evening',
+        badge: 'Celebration • Spring 2026',
+        objectPos: 'object-center',
+        caption: 'Drew and Hannah in black tie and evening gown dressed up for a special celebration together.'
+      },
+      {
+        id: 'family-disneyland-adventures',
+        src: 'assets/disneyland_willems.jpg',
+        title: 'Disneyland Adventures',
+        badge: 'Disneyland Magic • Summer 2026',
+        objectPos: 'object-center',
+        caption: 'Making magical memories at Disneyland—sharing rides, laughs, and unforgettable family adventures in front of the castle!'
+      },
+      {
+        id: 'family-disneyland-smiles',
+        src: 'assets/drew-hannah-colin-disneyland.jpg',
+        title: 'Disneyland Family Fun',
+        badge: 'Disneyland Magic • Summer 2026',
+        objectPos: 'object-center',
+        caption: 'Hannah in her anniversary Minnie ears and Colin cuddling his Ewok pal—all smiles for a sunny day in Disneyland!'
+      },
+      {
+        id: 'family-wicked-musical-civic-center',
+        src: 'assets/drew-hannah-theater-night.jpg',
+        title: 'A Wicked Good Evening',
+        badge: 'Wicked Theater Night • Fall 2026',
+        objectPos: 'object-center',
+        caption: 'Drew and Hannah enjoying a memorable theater date night out with drinks in hand in front of the Oz map dragon set.'
+      },
+      {
+        id: 'celebration-beer-drew',
+        src: 'assets/beer.JPG',
+        title: 'Craft Beers at Walking Tree Brewery',
+        badge: 'Cheers to 10 Years!',
+        objectPos: 'object-[center_35%]',
+        caption: 'Drew ready to celebrate with great craft brews at Walking Tree Brewery in Vero Beach, FL!'
+      },
+      {
+        id: 'celebration-beer-hannah',
+        src: 'assets/beer2.jpg',
+        title: 'Cheers to 10 Years!',
+        badge: 'Cheers to 10 Years!',
+        objectPos: 'object-[center_35%]',
+        caption: 'Hannah raising a glass for an easygoing afternoon of drinks, food, and music!'
+      }
+    ];
+
+    // Verified Hotel Dataset (5 within 5 miles of Big Grove Brewery + 5 in West Des Moines near Jordan Creek)
+    const HOTELS_DATA = [
+      {
+        id: 'fort-des-moines',
+        name: 'Hotel Fort Des Moines, Curio Collection by Hilton',
+        zone: 'downtown',
+        zoneLabel: 'Near Big Grove (< 5 mi • Downtown)',
+        address: '1000 Walnut St, Des Moines, IA 50309',
+        distanceMiles: 0.8,
+        driveTime: '4 min to Big Grove • 18 min to Fri Welcome',
+        rating: 4.6,
+        reviews: 822,
+        priceNum: 115,
+        priceDisplay: '~$102–$125/night',
+        freeBreakfast: false,
+        freeParking: false,
+        indoorPool: false,
+        suites: true,
+        url: 'https://www.hilton.com/en/hotels/dsmcuqq-hotel-fort-des-moines/?SEO_id=GMB-AMER-QQ-DSMCUQQ',
+        directionsUrl: 'https://www.google.com/maps/dir/555+17th+St,+Des+Moines,+IA+50309,+USA/1000+Walnut+St,+Des+Moines,+IA+50309,+USA',
+        summary: 'Restored 1919 downtown landmark less than a mile from Big Grove Brewery, blending classic wedding-style charm with modern rooms, Proudfoot & Bird, and Speakeasy bar.'
+      },
+      {
+        id: 'hie-downtown',
+        name: 'Holiday Inn Express & Suites Des Moines Downtown by IHG',
+        zone: 'downtown',
+        zoneLabel: 'Near Big Grove (< 5 mi • Downtown)',
+        address: '333 SW 11th St, Des Moines, IA 50309',
+        distanceMiles: 1.0,
+        driveTime: '5 min to Big Grove • 18 min to Fri Welcome',
+        rating: 4.5,
+        reviews: 764,
+        priceNum: 85,
+        priceDisplay: '~$85/night',
+        freeBreakfast: true,
+        freeParking: true,
+        indoorPool: true,
+        suites: true,
+        url: 'https://www.ihg.com/holidayinnexpress/hotels/us/en/des-moines/dsmml/hoteldetail?cm_mmc=GoogleMaps-_-EX-_-US-_-DSMML',
+        directionsUrl: 'https://www.google.com/maps/dir/555+17th+St,+Des+Moines,+IA+50309,+USA/333+SW+11th+St,+Des+Moines,+IA+50309,+USA',
+        summary: 'Super convenient downtown pick just 1 mile south of Big Grove with free hot breakfast, free on-site parking, indoor pool, hot tub, and complimentary airport shuttle.'
+      },
+      {
+        id: 'surety-hotel',
+        name: 'Surety Hotel, Autograph Collection',
+        zone: 'downtown',
+        zoneLabel: 'Near Big Grove (< 5 mi • Downtown)',
+        address: '206 6th Ave, Des Moines, IA 50309',
+        distanceMiles: 1.1,
+        driveTime: '5 min to Big Grove • 18 min to Fri Welcome',
+        rating: 4.5,
+        reviews: 488,
+        priceNum: 145,
+        priceDisplay: '~$141–$152/night',
+        freeBreakfast: false,
+        freeParking: false,
+        indoorPool: false,
+        suites: true,
+        url: 'https://www.marriott.com/en-us/hotels/dsmkd-surety-hotel-autograph-collection/overview/?scid=f2ae0541-1279-4f24-b197-a979c79310b0',
+        directionsUrl: 'https://www.google.com/maps/dir/555+17th+St,+Des+Moines,+IA+50309,+USA/206+6th+Ave,+Des+Moines,+IA+50309,+USA',
+        summary: 'Chic boutique hotel housed in a historic 1913 bank building in the heart of downtown, steps from the Saturday morning Farmers’ Market and Mulberry Street Tavern.'
+      },
+      {
+        id: 'home2-drake',
+        name: 'Home2 Suites by Hilton Des Moines at Drake University',
+        zone: 'downtown',
+        zoneLabel: 'Near Big Grove (< 5 mi • Drake / Ingersoll)',
+        address: '2650 University Ave, Des Moines, IA 50311',
+        distanceMiles: 1.4,
+        driveTime: '6 min to Big Grove • 15 min to Fri Welcome',
+        rating: 4.5,
+        reviews: 433,
+        priceNum: 86,
+        priceDisplay: '~$78–$93/night',
+        freeBreakfast: true,
+        freeParking: true,
+        indoorPool: true,
+        suites: true,
+        url: 'https://www.hilton.com/en/hotels/dsmduht-home2-suites-des-moines-at-drake-university/?SEO_id=GMB-AMER-HT-DSMDUHT',
+        directionsUrl: 'https://www.google.com/maps/dir/555+17th+St,+Des+Moines,+IA+50309,+USA/2650+University+Ave,+Des+Moines,+IA+50311,+USA',
+        summary: 'Modern all-suite hotel just 1.4 miles northwest of Big Grove Brewery. Every suite includes a kitchenette and sleeper sofa, plus free breakfast, free parking, and an indoor pool.'
+      },
+      {
+        id: 'hampton-embassy-downtown',
+        name: 'Hampton Inn & Suites / Embassy Suites Des Moines Downtown',
+        zone: 'downtown',
+        zoneLabel: 'Near Big Grove (< 5 mi • Riverwalk)',
+        address: '120 SW Water St & 101 E Locust St, Des Moines, IA 50309',
+        distanceMiles: 1.5,
+        driveTime: '7 min to Big Grove • 19 min to Fri Welcome',
+        rating: 4.3,
+        reviews: 1004,
+        priceNum: 97,
+        priceDisplay: '~$97–$148/night',
+        freeBreakfast: true,
+        freeParking: false,
+        indoorPool: true,
+        suites: true,
+        url: 'https://www.hilton.com/en/hotels/dsmwshx-hampton-suites-des-moines-downtown/?SEO_id=GMB-AMER-HX-DSMWSHX',
+        directionsUrl: 'https://www.google.com/maps/dir/555+17th+St,+Des+Moines,+IA+50309,+USA/120+SW+Water+St,+Des+Moines,+IA+50309,+USA',
+        summary: 'Right along the Des Moines Riverwalk within 1.5 miles of Big Grove Brewery, offering free hot breakfast, indoor pool, and easy walkability to the East Village.'
+      },
+      {
+        id: 'drury-west-des-moines',
+        name: 'Drury Inn & Suites West Des Moines',
+        zone: 'jordancreek',
+        zoneLabel: 'West Des Moines • Near Jordan Creek',
+        address: '5505 Mills Civic Pkwy, West Des Moines, IA 50266',
+        distanceMiles: 10.2,
+        driveTime: '16 min to Big Grove • 11 min to Fri Welcome',
+        rating: 4.5,
+        reviews: 1403,
+        priceNum: 92,
+        priceDisplay: '~$92/night',
+        freeBreakfast: true,
+        freeParking: true,
+        indoorPool: true,
+        suites: true,
+        url: 'https://www.druryhotels.com/locations/west-des-moines-ia/drury-inn-and-suites-west-des-moines?utm_campaign=gmb&utm_medium=organic&utm_source=local2',
+        directionsUrl: 'https://www.google.com/maps/dir/555+17th+St,+Des+Moines,+IA+50309,+USA/Jordan+Creek+Town+Center,+101+Jordan+Creek+Pkwy,+West+Des+Moines,+IA+50266,+United+States',
+        summary: 'Huge favorite for traveling families! Includes free hot breakfast, free 5:30 Kickback® evening snacks and drinks, free parking, and an indoor/outdoor pool right off I-35 & Mills Civic Pkwy.'
+      },
+      {
+        id: 'hyatt-place-jordan-creek',
+        name: 'Hyatt Place West Des Moines / Jordan Creek',
+        zone: 'jordancreek',
+        zoneLabel: 'West Des Moines • Near Jordan Creek',
+        address: '295 S 64th St, West Des Moines, IA 50266',
+        distanceMiles: 10.7,
+        driveTime: '17 min to Big Grove • 10 min to Fri Welcome',
+        rating: 4.4,
+        reviews: 688,
+        priceNum: 80,
+        priceDisplay: '~$80/night',
+        freeBreakfast: true,
+        freeParking: true,
+        indoorPool: true,
+        suites: true,
+        url: 'https://www.hyatt.com/hyatt-place/en-US/dsmzw-hyatt-place-west-des-moines-jordan-creek?src=corp_lclb_google_seo_dsmzw&utm_source=google&utm_medium=organic&utm_campaign=lmr',
+        directionsUrl: 'https://www.google.com/maps/dir/555+17th+St,+Des+Moines,+IA+50309,+USA/Jordan+Creek+Town+Center,+101+Jordan+Creek+Pkwy,+West+Des+Moines,+IA+50266,+United+States',
+        summary: 'Spotless, modern rooms with signature Cozy Corner sleeper sofas, free hot breakfast, free parking, and indoor pool just steps from Jordan Creek shopping and dining.'
+      },
+      {
+        id: 'hilton-garden-inn-wdm',
+        name: 'Hilton Garden Inn West Des Moines (at Jordan Creek)',
+        zone: 'jordancreek',
+        zoneLabel: 'West Des Moines • Near Jordan Creek',
+        address: '205 S 64th St, West Des Moines, IA 50266',
+        distanceMiles: 10.6,
+        driveTime: '17 min to Big Grove • 10 min to Fri Welcome',
+        rating: 4.3,
+        reviews: 1045,
+        priceNum: 106,
+        priceDisplay: '~$106/night',
+        freeBreakfast: false,
+        freeParking: true,
+        indoorPool: true,
+        suites: true,
+        url: 'https://www.hilton.com/en/hotels/dsmwhgi-hilton-garden-inn-west-des-moines/?SEO_id=GMB-AMER-GI-DSMWHGI',
+        directionsUrl: 'https://www.google.com/maps/dir/555+17th+St,+Des+Moines,+IA+50309,+USA/Jordan+Creek+Town+Center,+101+Jordan+Creek+Pkwy,+West+Des+Moines,+IA+50266,+United+States',
+        summary: 'Located right by Jordan Creek Town Center and West Glen, featuring an indoor pool, hot tub, free parking, and on-site restaurant & bar.'
+      },
+      {
+        id: 'residence-inn-jordan-creek',
+        name: 'Residence Inn by Marriott Des Moines West at Jordan Creek Town Center',
+        zone: 'jordancreek',
+        zoneLabel: 'West Des Moines • Near Jordan Creek',
+        address: '160 S Jordan Creek Pkwy, West Des Moines, IA 50266',
+        distanceMiles: 10.9,
+        driveTime: '18 min to Big Grove • 10 min to Fri Welcome',
+        rating: 4.3,
+        reviews: 561,
+        priceNum: 111,
+        priceDisplay: '~$111/night',
+        freeBreakfast: true,
+        freeParking: false,
+        indoorPool: true,
+        suites: true,
+        url: 'https://www.marriott.com/en-us/hotels/dsmri-residence-inn-des-moines-west-at-jordan-creek-town-center/overview/?scid=f2ae0541-1279-4f24-b197-a979c79310b0',
+        directionsUrl: 'https://www.google.com/maps/dir/555+17th+St,+Des+Moines,+IA+50309,+USA/Jordan+Creek+Town+Center,+101+Jordan+Creek+Pkwy,+West+Des+Moines,+IA+50266,+United+States',
+        summary: '1- and 2-bedroom residential suites with full kitchens, free breakfast, indoor pool, outdoor sport court, and scenic pond/waterfall walking paths right at Jordan Creek.'
+      },
+      {
+        id: 'hie-jordan-west',
+        name: 'Holiday Inn Express & Suites West Des Moines - Jordan West by IHG',
+        zone: 'jordancreek',
+        zoneLabel: 'West Des Moines • Near Jordan Creek',
+        address: '240 Jordan Creek Pkwy, West Des Moines, IA 50266',
+        distanceMiles: 11.1,
+        driveTime: '18 min to Big Grove • 9 min to Fri Welcome',
+        rating: 4.5,
+        reviews: 524,
+        priceNum: 94,
+        priceDisplay: '~$94/night',
+        freeBreakfast: true,
+        freeParking: true,
+        indoorPool: true,
+        suites: true,
+        url: 'https://www.ihg.com/holidayinnexpress/hotels/us/en/des-moines/dsmwd/hoteldetail?cm_mmc=GoogleMaps-_-EX-_-US-_-DSMWD',
+        directionsUrl: 'https://www.google.com/maps/dir/555+17th+St,+Des+Moines,+IA+50309,+USA/Jordan+Creek+Town+Center,+101+Jordan+Creek+Pkwy,+West+Des+Moines,+IA+50266,+United+States',
+        summary: 'Highly rated Jordan Creek hotel offering airy rooms and suites, free hot breakfast, free parking, an indoor pool, and quick access north to Urbandale.'
+      }
+    ];
+
+    // Verified Des Moines & West Des Moines Attractions
+    const ACTIVITIES_DATA = [
+      {
+        id: 'farmers-market',
+        name: 'Downtown Farmers’ Market',
+        cats: ['nearby', 'kids'],
+        badge: 'Sat 7 AM – 12 PM • Court Ave',
+        address: 'Historic Court District, Downtown Des Moines',
+        url: 'https://www.catchdesmoines.com/things-to-do/itineraries/summer-things-to-do/',
+        desc: 'Ranked among America’s best farmers’ markets! Nearly 300 vendors line 9 downtown blocks every Saturday morning with breakfast burritos, pastries, local produce, and live street music.'
+      },
+      {
+        id: 'singlespeed',
+        name: 'SingleSpeed Brewing Co.',
+        cats: ['nearby', 'drinks'],
+        badge: '1.2 mi from Big Grove • Taproom & Patio',
+        address: '303 Scott Ave, Des Moines, IA 50309',
+        url: 'https://www.singlespeedbrewing.com/',
+        desc: 'Spacious, bike-friendly brewery housed in a restored mid-century industrial building south of the East Village. Features an extensive craft beer list, full scratch kitchen menu, and a large outdoor patio.'
+      },
+      {
+        id: 'lua-brewing',
+        name: 'Lua Brewing',
+        cats: ['nearby', 'drinks'],
+        badge: '0.6 mi from Big Grove • Sherman Hill Craft Beer & Eats',
+        address: '1525 High St, Des Moines, IA 50309',
+        url: 'https://luabeer.com/',
+        desc: 'Nationally acclaimed craft brewery located in historic Sherman Hill just blocks from Big Grove. Famous for exceptional hazy IPAs, fruited sours, smash burgers, and a vibrant dog-friendly patio.'
+      },
+      {
+        id: 'dsm-biergarten',
+        name: 'Des Moines Biergarten',
+        cats: ['nearby', 'kids', 'drinks'],
+        badge: 'Water Works Park • Open-Air German Beer Garden',
+        address: '2201 George Flagg Pkwy, Des Moines, IA 50321',
+        url: 'https://www.desmoinesbiergarten.com/',
+        desc: 'Authentic German-style open-air beer garden set under the shade trees at Water Works Park. Serves German and local craft brews, giant soft pretzels, and brats with lawn games for all ages.'
+      },
+      {
+        id: 'confluence',
+        name: 'Confluence Brewing Company',
+        cats: ['nearby', 'drinks'],
+        badge: '1.5 mi • Gray’s Lake Trailside Beer Garden',
+        address: '1235 Thomas Beck Rd, Des Moines, IA 50315',
+        url: 'https://confluencebrewing.com/',
+        desc: 'A Des Moines craft brewing staple located right along the Gray’s Lake bike trail. Features dozens of rotating taps (including Des Moines IPA and Capital Gold), a sunlit beer garden, and visiting local food trucks.'
+      },
+      {
+        id: 'el-bait-shop',
+        name: 'El Bait Shop',
+        cats: ['nearby', 'drinks'],
+        badge: '1.1 mi • 262 Craft Beers on Tap',
+        address: '200 SW 2nd St, Des Moines, IA 50309',
+        url: 'https://elbaitshop.com/',
+        desc: 'Legendary 1970s fishing-and-bicycle themed beer hall in Downtown Des Moines boasting 262 craft beers on draft—one of the largest draft selections in the world—plus tasty tacos and pub fare.'
+      },
+      {
+        id: 'east-village-raygun',
+        name: 'Shopping in the East Village (RAYGUN)',
+        cats: ['nearby', 'kids'],
+        badge: 'Historic East Village • Boutiques & Famous RAYGUN',
+        address: '505 E Grand Ave, Des Moines, IA 50309',
+        url: 'https://www.raygunsite.com/',
+        desc: 'Explore Des Moines’ trendiest district filled with independent boutiques, coffee shops, and bakeries. Don’t miss RAYGUN ("The Greatest Store in the Universe") for iconic Midwestern humor and apparel.'
+      },
+      {
+        id: 'jasper-winery',
+        name: 'Jasper Winery',
+        cats: ['nearby', 'drinks'],
+        badge: 'Water Works Area • Winery & Outdoor Lawn',
+        address: '2400 George Flagg Pkwy, Des Moines, IA 50321',
+        url: 'https://jasperwinery.com/',
+        desc: 'Estate winery right by Water Works Park and Gray’s Lake. Features a gorgeous outdoor lawn, wine flights, craft cider, sangria, beer, and a welcoming summer patio atmosphere.'
+      },
+      {
+        id: 'paws-and-pints',
+        name: 'Paws & Pints',
+        cats: ['nearby', 'kids', 'drinks'],
+        badge: 'SW Des Moines • Dog Park, Bar & Restaurant',
+        address: '6218 Willowmere Dr, Des Moines, IA 50321',
+        url: 'https://pawsandpints.com/',
+        desc: 'An incredible 20,000+ sq ft canine paradise and entertainment venue featuring an off-leash dog park, full scratch kitchen, craft cocktails, beer, yard games, and live music.'
+      },
+      {
+        id: 'winestyles-wdm',
+        name: 'WineStyles (West Des Moines)',
+        cats: ['west', 'drinks'],
+        badge: 'West Glen Town Center • Wine Lounge & Craft Beer',
+        address: '5515 Mills Civic Pkwy #120, West Des Moines, IA 50266',
+        url: 'https://winestyles.com/westdesmoines/',
+        desc: 'Charming neighborhood clubhouse in West Glen offering curated wines by the taste, glass, or bottle, craft beers on tap, artisanal cheese boards, and pizzettes in a warm, relaxed lounge setting.'
+      },
+      {
+        id: 'blank-park-zoo',
+        name: 'Blank Park Zoo',
+        cats: ['nearby', 'kids'],
+        badge: 'South Des Moines • Iowa’s Wild Adventure',
+        address: '7401 SW 9th St, Des Moines, IA 50315',
+        url: 'https://www.blankparkzoo.com/',
+        desc: 'Iowa’s only accredited zoo spanning 49 acres with rhinos, giraffes, lions, red pandas, feeding experiences, and a miniature train—an easy and fun morning outing for kids and adults alike.'
+      },
+      {
+        id: 'valley-junction',
+        name: 'Historic Valley Junction',
+        cats: ['west', 'kids'],
+        badge: 'West Des Moines • Historic Shopping & Antiques',
+        address: '5th St (Valley Junction District), West Des Moines, IA 50265',
+        url: 'https://www.valleyjunction.com/',
+        desc: 'Quaint historic railroad downtown in West Des Moines with over 150 independent specialty shops, antique stores, art galleries, candy shops, and friendly local diners along tree-lined 5th Street.'
+      },
+      {
+        id: 'operating-room-arcade',
+        name: 'The Operating Room Arcade',
+        cats: ['west', 'kids', 'drinks'],
+        badge: 'West Glen Town Center • Arcade & Pinball Bar',
+        address: '5515 Mills Civic Pkwy #130, West Des Moines, IA 50266',
+        url: 'https://www.operatingroomarcade.com/',
+        desc: 'West Des Moines’ premier pinball and arcade lounge right in West Glen Town Center. Packed with classic and modern arcade games, pinball machines, skeeball, craft cocktails, and beer.'
+      },
+      {
+        id: 'science-center',
+        name: 'Science Center of Iowa',
+        cats: ['nearby', 'kids'],
+        badge: '1.3 mi from Big Grove • Kids Favorite',
+        address: '401 W Martin Luther King Jr Pkwy, Des Moines, IA',
+        url: 'http://www.sciowa.org/',
+        desc: 'Hands-on interactive science exhibits, planetarium shows, and live demonstrations that kids of all ages love, just a 5-minute drive from Big Grove.'
+      },
+      {
+        id: 'botanical-garden',
+        name: 'Greater Des Moines Botanical Garden',
+        cats: ['nearby', 'kids'],
+        badge: '2.0 mi • Riverfront Dome',
+        address: '909 Robert D. Ray Dr, Des Moines, IA 50309',
+        url: 'https://dmbotanicalgarden.com/',
+        desc: 'Explore 12 acres of outdoor summer riverfront gardens, a tranquil waterfall boardwalk, and the iconic geodesic conservatory dome.'
+      },
+      {
+        id: 'rotary-riverwalk',
+        name: 'Rotary Riverwalk Park & Asian Garden',
+        cats: ['nearby', 'kids'],
+        badge: '1.5 mi • Scenic Bridges & Swings',
+        address: '821 W River Dr, Des Moines, IA 50309',
+        url: 'http://rotaryclubofdmam.com/Stories/rotary-riverwalk-park-1',
+        desc: 'Walk across the illuminated Iowa Women of Achievement Bridge, check out the giant fishing bobber play area, and stroll through the peaceful Robert D. Ray Asian Garden.'
+      },
+      {
+        id: 'topgolf-wdm',
+        name: 'Topgolf West Des Moines',
+        cats: ['west', 'kids'],
+        badge: 'Jordan Creek Area • Family Fun',
+        address: '490 S 68th St, West Des Moines, IA 50266',
+        url: 'https://topgolf.com/us/west-des-moines/',
+        desc: 'Climate-controlled hitting bays with high-tech golf games suitable for all skill levels, plus full-service food and drinks. Minutes from Jordan Creek Town Center hotels!'
+      }
+    ];
+
+    // State
+    let currentPage = 'home';
+    let currentHotelZone = 'all';
+    let currentActivityCat = 'all';
+    let currentLightboxIndex = 0;
+    let submittedRsvps = [];
+
+    // Safe localStorage load
+    try {
+      const saved = localStorage.getItem('wolos_10yr_rsvps');
+      if (saved) {
+        submittedRsvps = JSON.parse(saved);
+      }
+    } catch (err) {
+      submittedRsvps = [];
+    }
+
+    // Toast Helper
+    function showToast(msg) {
+      const container = document.getElementById('toast-container');
+      const textEl = document.getElementById('toast-message');
+      if (!container || !textEl) return;
+      textEl.textContent = msg;
+      container.classList.remove('hidden');
+      if (window._toastTimer) clearTimeout(window._toastTimer);
+      window._toastTimer = setTimeout(function() {
+        container.classList.add('hidden');
+      }, 3600);
+    }
+
+    // Clipboard Copy Helper
+    function copyTextToClipboard(text, confirmMsg) {
+      const fallbackCopy = function() {
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        try {
+          document.execCommand('copy');
+          showToast(confirmMsg);
+        } catch (e) {
+          showToast('Copied: ' + text);
+        }
+        document.body.removeChild(ta);
+      };
+
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(function() {
+          showToast(confirmMsg);
+        }).catch(fallbackCopy);
+      } else {
+        fallbackCopy();
+      }
+    }
+
+    // Page Navigation
+    function switchPage(pageId) {
+      const validPages = ['home', 'event', 'album', 'lodging', 'things-to-do', 'rsvp'];
+      if (validPages.indexOf(pageId) === -1) pageId = 'home';
+      currentPage = pageId;
+
+      validPages.forEach(function(id) {
+        const sec = document.getElementById('page-' + id);
+        if (sec) {
+          if (id === pageId) {
+            sec.classList.remove('hidden');
+          } else {
+            sec.classList.add('hidden');
+          }
+        }
+      });
+
+      // Update Desktop Tab Highlight
+      document.querySelectorAll('.nav-tab').forEach(function(tab) {
+        const target = tab.getAttribute('data-page-target');
+        if (target === pageId) {
+          tab.classList.add('nav-tab-active');
+        } else {
+          tab.classList.remove('nav-tab-active');
+        }
+      });
+
+      // Close Mobile Menu if Open
+      const mobileMenu = document.getElementById('mobile-menu');
+      const iconOpen = document.getElementById('menu-icon-open');
+      const iconClose = document.getElementById('menu-icon-close');
+      if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+        mobileMenu.classList.add('hidden');
+        if (iconOpen) iconOpen.classList.remove('hidden');
+        if (iconClose) iconClose.classList.add('hidden');
+      }
+
+      try {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } catch (e) {
+        window.scrollTo(0, 0);
+      }
+    }
+
+    // Lightbox Functions
+    function openLightboxByData(src, title, badge, caption) {
+      const modal = document.getElementById('lightbox-modal');
+      const img = document.getElementById('lightbox-img');
+      const titleEl = document.getElementById('lightbox-title');
+      const badgeEl = document.getElementById('lightbox-badge');
+      const capEl = document.getElementById('lightbox-caption');
+      if (!modal || !img) return;
+
+      const idx = ALBUM_PHOTOS.findIndex(function(p) { return p.src === src; });
+      currentLightboxIndex = idx >= 0 ? idx : 0;
+
+      img.src = src;
+      if (titleEl) titleEl.textContent = title || 'Drew & Hannah';
+      if (badgeEl) badgeEl.textContent = badge || '10 Years of Memories';
+      if (capEl) capEl.textContent = caption || '';
+      modal.classList.remove('hidden');
+    }
+
+    function stepLightbox(delta) {
+      if (!ALBUM_PHOTOS.length) return;
+      currentLightboxIndex = (currentLightboxIndex + delta + ALBUM_PHOTOS.length) % ALBUM_PHOTOS.length;
+      const item = ALBUM_PHOTOS[currentLightboxIndex];
+      openLightboxByData(item.src, item.title, item.badge, item.caption);
+    }
+
+    function bindLightboxTriggers() {
+      document.querySelectorAll('.lightbox-trigger').forEach(function(el) {
+        if (el._lightboxBound) return;
+        el._lightboxBound = true;
+        el.addEventListener('click', function() {
+          openLightboxByData(
+            el.getAttribute('data-photo-src'),
+            el.getAttribute('data-photo-title'),
+            el.getAttribute('data-photo-badge'),
+            el.getAttribute('data-photo-caption')
+          );
+        });
+      });
+    }
+
+    // Render Album Grid (Shows all pictures one after another - our life over the years)
+    function renderAlbum() {
+      const grid = document.getElementById('album-grid');
+      const totalCountEl = document.getElementById('album-total-count');
+      if (totalCountEl) totalCountEl.textContent = String(ALBUM_PHOTOS.length);
+      if (!grid) return;
+
+      grid.innerHTML = ALBUM_PHOTOS.map(function(photo) {
+        return (
+          '<div class="card-wedding rounded-2xl overflow-hidden flex flex-col justify-between group cursor-pointer album-card-trigger" ' +
+            'data-photo-src="' + photo.src.replace(/"/g, '&quot;') + '" ' +
+            'data-photo-title="' + photo.title.replace(/"/g, '&quot;') + '" ' +
+            'data-photo-badge="' + photo.badge.replace(/"/g, '&quot;') + '" ' +
+            'data-photo-caption="' + photo.caption.replace(/"/g, '&quot;') + '">' +
+            '<div>' +
+              '<div class="relative h-72 overflow-hidden bg-linen">' +
+                '<img src="' + photo.src + '" alt="' + photo.title.replace(/"/g, '&quot;') + '" class="w-full h-full object-cover ' + (photo.objectPos || 'object-center') + ' group-hover:scale-105 transition duration-500" loading="lazy" />' +
+                '<span class="absolute top-3 left-3 bg-espresso/80 text-ivory text-[11px] font-medium px-3 py-1 rounded-full backdrop-blur-sm">' +
+                  photo.badge +
+                '</span>' +
+                '<span class="absolute bottom-3 right-3 bg-espresso/75 text-champagne text-[11px] font-medium px-2.5 py-1 rounded-lg opacity-0 group-hover:opacity-100 transition">' +
+                  'Click to Enlarge ⤢' +
+                '</span>' +
+              '</div>' +
+              '<div class="p-5">' +
+                '<h3 class="font-wedding text-2xl font-semibold text-espresso">' + photo.title + '</h3>' +
+                '<p class="text-xs sm:text-sm text-espresso/75 mt-1.5 leading-relaxed">' + photo.caption + '</p>' +
+              '</div>' +
+            '</div>' +
+          '</div>'
+        );
+      }).join('');
+
+      grid.querySelectorAll('.album-card-trigger').forEach(function(card) {
+        card.addEventListener('click', function() {
+          openLightboxByData(
+            card.getAttribute('data-photo-src'),
+            card.getAttribute('data-photo-title'),
+            card.getAttribute('data-photo-badge'),
+            card.getAttribute('data-photo-caption')
+          );
+        });
+      });
+    }
+
+    // Render Hotels Grid
+    function renderHotels() {
+      const grid = document.getElementById('hotels-grid');
+      const badge = document.getElementById('hotel-count-badge');
+      const sortVal = document.getElementById('hotel-sort-select') ? document.getElementById('hotel-sort-select').value : 'distance';
+      const reqBreakfast = document.getElementById('filter-breakfast') && document.getElementById('filter-breakfast').checked;
+      const reqParking = document.getElementById('filter-parking') && document.getElementById('filter-parking').checked;
+      const reqPool = document.getElementById('filter-pool') && document.getElementById('filter-pool').checked;
+      const reqSuites = document.getElementById('filter-suites') && document.getElementById('filter-suites').checked;
+
+      if (!grid) return;
+
+      const filtered = HOTELS_DATA.filter(function(h) {
+        if (currentHotelZone !== 'all' && h.zone !== currentHotelZone) return false;
+        if (reqBreakfast && !h.freeBreakfast) return false;
+        if (reqParking && !h.freeParking) return false;
+        if (reqPool && !h.indoorPool) return false;
+        if (reqSuites && !h.suites) return false;
+        return true;
+      });
+
+      filtered.sort(function(a, b) {
+        if (sortVal === 'rating') return b.rating - a.rating;
+        if (sortVal === 'price') return a.priceNum - b.priceNum;
+        return a.distanceMiles - b.distanceMiles;
+      });
+
+      if (badge) {
+        badge.textContent = 'Showing ' + filtered.length + ' of ' + HOTELS_DATA.length + ' hotels';
+      }
+
+      if (filtered.length === 0) {
+        grid.innerHTML =
+          '<div class="col-span-full bg-white border border-champagne rounded-2xl p-8 text-center">' +
+            '<p class="font-wedding text-2xl text-espresso">No hotels match all selected filters</p>' +
+            '<p class="text-xs text-espresso/70 mt-1">Try unchecking one of the quick perk boxes above to see more options.</p>' +
+          '</div>';
+        return;
+      }
+
+      grid.innerHTML = filtered.map(function(h) {
+        const perks = [];
+        if (h.freeBreakfast) perks.push('Free Breakfast');
+        if (h.freeParking) perks.push('Free Parking');
+        if (h.indoorPool) perks.push('Indoor Pool');
+        if (h.suites) perks.push('Suites Available');
+
+        return (
+          '<div class="card-wedding rounded-2xl p-6 flex flex-col justify-between">' +
+            '<div>' +
+              '<div class="flex flex-wrap items-center justify-between gap-2 mb-2">' +
+                '<span class="text-[11px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full ' +
+                  (h.zone === 'downtown' ? 'bg-sage-100 text-sage-800' : 'bg-amber-100/80 text-amber-900') + '">' +
+                  h.zoneLabel +
+                '</span>' +
+                '<span class="text-xs font-semibold text-espresso/80">★ ' + h.rating + ' (' + h.reviews + ' reviews)</span>' +
+              '</div>' +
+              '<h3 class="font-wedding text-2xl font-semibold text-espresso leading-snug">' +
+                '<a href="' + h.url + '" target="_blank" rel="noopener noreferrer" class="hover:text-sage-700 transition">' + h.name + '</a>' +
+              '</h3>' +
+              '<p class="text-xs text-espresso/65 mt-1">' + h.address + '</p>' +
+              '<div class="flex flex-wrap items-center gap-2 mt-3 text-xs font-medium text-sage-800">' +
+                '<span class="bg-linen px-2.5 py-1 rounded-lg">' + h.distanceMiles + ' mi to Big Grove</span>' +
+                '<span class="bg-linen px-2.5 py-1 rounded-lg">' + h.driveTime + '</span>' +
+                '<span class="bg-linen px-2.5 py-1 rounded-lg font-semibold">' + h.priceDisplay + '</span>' +
+              '</div>' +
+              '<p class="text-xs sm:text-sm text-espresso/80 mt-3 leading-relaxed">' + h.summary + '</p>' +
+              '<div class="flex flex-wrap gap-1.5 mt-3">' +
+                perks.map(function(p) {
+                  return '<span class="text-[11px] bg-ivory border border-champagne px-2 py-0.5 rounded-md text-espresso/75">✓ ' + p + '</span>';
+                }).join('') +
+              '</div>' +
+            '</div>' +
+            '<div class="mt-5 pt-4 border-t border-champagne/60 flex items-center justify-between gap-3">' +
+              '<a href="' + h.url + '" target="_blank" rel="noopener noreferrer" class="px-4 py-2 rounded-xl bg-sage-600 hover:bg-sage-700 text-white text-xs font-medium transition">' +
+                'Check Rates &amp; Book ↗' +
+              '</a>' +
+              '<a href="' + h.directionsUrl + '" target="_blank" rel="noopener noreferrer" class="text-xs font-semibold text-sage-700 hover:underline">' +
+                'Route Map ↗' +
+              '</a>' +
+            '</div>' +
+          '</div>'
+        );
+      }).join('');
+    }
+
+    // Render Activities Grid
+    function renderActivities() {
+      const grid = document.getElementById('activities-grid');
+      if (!grid) return;
+
+      const filtered = ACTIVITIES_DATA.filter(function(act) {
+        if (currentActivityCat === 'all') return true;
+        return act.cats.indexOf(currentActivityCat) !== -1;
+      });
+
+      grid.innerHTML = filtered.map(function(act) {
+        return (
+          '<div class="card-wedding rounded-2xl p-5 flex flex-col justify-between">' +
+            '<div>' +
+              '<span class="inline-block text-[11px] font-semibold uppercase tracking-wider text-gold-600 bg-linen px-2.5 py-1 rounded-full mb-2">' +
+                act.badge +
+              '</span>' +
+              '<h3 class="font-wedding text-2xl font-semibold text-espresso">' +
+                '<a href="' + act.url + '" target="_blank" rel="noopener noreferrer" class="hover:text-sage-700 transition">' + act.name + '</a>' +
+              '</h3>' +
+              '<p class="text-[11px] text-espresso/60 mt-0.5">' + act.address + '</p>' +
+              '<p class="text-xs text-espresso/80 mt-2.5 leading-relaxed">' + act.desc + '</p>' +
+            '</div>' +
+            '<div class="mt-4 pt-3 border-t border-champagne/60">' +
+              '<a href="' + act.url + '" target="_blank" rel="noopener noreferrer" class="text-xs font-semibold text-sage-700 hover:underline">' +
+                'Visit Official Website ↗' +
+              '</a>' +
+            '</div>' +
+          '</div>'
+        );
+      }).join('');
+    }
+
+    // Render Local Submitted RSVPs
+    function renderSubmittedRsvps() {
+      const section = document.getElementById('submitted-rsvps-section');
+      const list = document.getElementById('submitted-rsvps-list');
+      if (!section || !list) return;
+
+      if (!submittedRsvps.length) {
+        section.classList.add('hidden');
+        return;
+      }
+
+      section.classList.remove('hidden');
+      list.innerHTML = submittedRsvps.map(function(item) {
+        return (
+          '<div class="bg-ivory border border-champagne rounded-xl px-4 py-2.5 flex flex-wrap items-center justify-between gap-2 text-xs">' +
+            '<div>' +
+              '<strong class="text-espresso">' + item.name + '</strong> ' +
+              '<span class="text-espresso/70">(' + (item.attending !== 'no' ? item.attending + ' • ' + item.adults + ' Adults, ' + item.kids + ' Kids • ' + item.lodging : 'Regretfully Declined') + ')</span>' +
+            '</div>' +
+            '<span class="text-[11px] text-sage-700 font-medium">Saved ✓</span>' +
+          '</div>'
+        );
+      }).join('');
+    }
+
+    // Countdown Timer to Saturday, July 10, 2027 11:00:00 CDT
+    function updateCountdown() {
+      const targetTime = new Date('2027-07-10T11:00:00-05:00').getTime();
+      const now = new Date().getTime();
+      const diff = Math.max(0, targetTime - now);
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const secs = Math.floor((diff % (1000 * 60)) / 1000);
+
+      const dEl = document.getElementById('cd-days');
+      const hEl = document.getElementById('cd-hours');
+      const mEl = document.getElementById('cd-mins');
+      const sEl = document.getElementById('cd-secs');
+
+      if (dEl) dEl.textContent = String(days);
+      if (hEl) hEl.textContent = String(hours).padStart(2, '0');
+      if (mEl) mEl.textContent = String(mins).padStart(2, '0');
+      if (sEl) sEl.textContent = String(secs).padStart(2, '0');
+    }
+
+    // Download .ics Calendar Invite (Includes Both Friday Night Welcome & Saturday Anniversary Party)
+    function downloadIcsFile() {
+      const icsLines = [
+        'BEGIN:VCALENDAR',
+        'VERSION:2.0',
+        'PRODID:-//Drew and Hannah Wolos//10 Year Anniversary Weekend//EN',
+        'BEGIN:VEVENT',
+        'UID:wolos-10yr-friday-welcome-20270709@urbandale',
+        'DTSTAMP:20261025T210000Z',
+        'DTSTART:20270709T220000Z',
+        'DTEND:20270710T020000Z',
+        'SUMMARY:Drew & Hannah\'s Friday Night Welcome Gathering',
+        'DESCRIPTION:Casual Friday evening welcome gathering at our house in Urbandale! Anyone in town is welcome to come join us—kids can play and we will have food and drinks starting at 5:00 PM.',
+        'LOCATION:5109 165th Cir\\, Urbandale\\, IA 50323',
+        'END:VEVENT',
+        'BEGIN:VEVENT',
+        'UID:wolos-10yr-anniversary-20270710@biggrove.com',
+        'DTSTAMP:20261025T210000Z',
+        'DTSTART:20270710T160000Z',
+        'DTEND:20270710T210000Z',
+        'SUMMARY:Drew & Hannah\'s 10-Year Anniversary Party',
+        'DESCRIPTION:Celebrating 10 years of marriage! Join us from 11:00 AM to 4:00 PM at Big Grove Brewery in Des Moines for live music\\, food\\, and drinks.',
+        'LOCATION:Big Grove Brewery & Taproom\\, 555 17th St\\, Des Moines\\, IA 50309',
+        'END:VEVENT',
+        'END:VCALENDAR'
+      ].join('\r\n');
+
+      const blob = new Blob([icsLines], { type: 'text/calendar;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'drew-hannah-10yr-anniversary-weekend-july-9-10-2027.ics';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      showToast('Downloaded calendar invites (.ics) for July 9 & July 10, 2027!');
+    }
+
+    // Initialize Event Listeners
+    window.addEventListener('DOMContentLoaded', function() {
+      // Navigation Buttons
+      document.querySelectorAll('.nav-trigger').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          const target = btn.getAttribute('data-page-target');
+          if (target) switchPage(target);
+        });
+      });
+
+      // Mobile Hamburger Menu
+      const mobileToggle = document.getElementById('mobile-menu-toggle');
+      if (mobileToggle) {
+        mobileToggle.addEventListener('click', function() {
+          const menu = document.getElementById('mobile-menu');
+          const iconOpen = document.getElementById('menu-icon-open');
+          const iconClose = document.getElementById('menu-icon-close');
+          if (menu) {
+            const isHidden = menu.classList.contains('hidden');
+            if (isHidden) {
+              menu.classList.remove('hidden');
+              if (iconOpen) iconOpen.classList.add('hidden');
+              if (iconClose) iconClose.classList.remove('hidden');
+            } else {
+              menu.classList.add('hidden');
+              if (iconOpen) iconOpen.classList.remove('hidden');
+              if (iconClose) iconClose.classList.add('hidden');
+            }
+          }
+        });
+      }
+
+      // Lightbox Modal Controls
+      const lbModal = document.getElementById('lightbox-modal');
+      const lbClose = document.getElementById('lightbox-close');
+      const lbPrev = document.getElementById('lightbox-prev');
+      const lbNext = document.getElementById('lightbox-next');
+
+      if (lbClose && lbModal) {
+        lbClose.addEventListener('click', function() {
+          lbModal.classList.add('hidden');
+        });
+      }
+      if (lbPrev) {
+        lbPrev.addEventListener('click', function(e) {
+          e.stopPropagation();
+          stepLightbox(-1);
+        });
+      }
+      if (lbNext) {
+        lbNext.addEventListener('click', function(e) {
+          e.stopPropagation();
+          stepLightbox(1);
+        });
+      }
+      if (lbModal) {
+        lbModal.addEventListener('click', function(e) {
+          if (e.target === lbModal) lbModal.classList.add('hidden');
+        });
+      }
+      window.addEventListener('keydown', function(e) {
+        if (!lbModal || lbModal.classList.contains('hidden')) return;
+        if (e.key === 'Escape') lbModal.classList.add('hidden');
+        if (e.key === 'ArrowLeft') stepLightbox(-1);
+        if (e.key === 'ArrowRight') stepLightbox(1);
+      });
+
+      bindLightboxTriggers();
+
+      // Calendar Modal Controls
+      const calModal = document.getElementById('calendar-modal');
+      const openCalHero = document.getElementById('open-calendar-modal-hero');
+      const openCalRsvp = document.getElementById('open-calendar-modal-rsvp');
+      const closeCalModal = document.getElementById('close-calendar-modal');
+      const downloadIcsBtn = document.getElementById('download-ics-btn');
+
+      if (openCalHero && calModal) {
+        openCalHero.addEventListener('click', function() {
+          calModal.classList.remove('hidden');
+        });
+      }
+      if (openCalRsvp && calModal) {
+        openCalRsvp.addEventListener('click', function() {
+          calModal.classList.remove('hidden');
+        });
+      }
+      if (closeCalModal && calModal) {
+        closeCalModal.addEventListener('click', function() {
+          calModal.classList.add('hidden');
+        });
+      }
+      if (downloadIcsBtn) {
+        downloadIcsBtn.addEventListener('click', downloadIcsFile);
+      }
+
+      // Copy Venue Address & Home Address Buttons
+      const copyAddressBtn = document.getElementById('copy-venue-address-btn');
+      if (copyAddressBtn) {
+        copyAddressBtn.addEventListener('click', function() {
+          copyTextToClipboard(
+            'Big Grove Brewery & Taproom, 555 17th St, Des Moines, IA 50309',
+            'Copied Big Grove Brewery address to clipboard!'
+          );
+        });
+      }
+
+      const copyHomeBtn = document.getElementById('copy-home-address-btn');
+      if (copyHomeBtn) {
+        copyHomeBtn.addEventListener('click', function() {
+          copyTextToClipboard(
+            '5109 165th Cir, Urbandale, IA 50323',
+            'Copied Drew & Hannah\'s Urbandale address to clipboard!'
+          );
+        });
+      }
+
+      // FAQ Accordions
+      document.querySelectorAll('.faq-toggle').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          const targetId = btn.getAttribute('data-faq-id');
+          const content = document.getElementById(targetId);
+          const icon = btn.querySelector('.faq-icon');
+          if (content) {
+            const isHidden = content.classList.contains('hidden');
+            if (isHidden) {
+              content.classList.remove('hidden');
+              if (icon) icon.textContent = '−';
+            } else {
+              content.classList.add('hidden');
+              if (icon) icon.textContent = '+';
+            }
+          }
+        });
+      });
+
+      // Hotel Zone Filter Buttons
+      document.querySelectorAll('.hotel-zone-btn').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          currentHotelZone = btn.getAttribute('data-hotel-zone') || 'all';
+          document.querySelectorAll('.hotel-zone-btn').forEach(function(b) {
+            if (!b.parentElement || b.parentElement.getAttribute('role') !== 'group') return;
+            if (b.getAttribute('data-hotel-zone') === currentHotelZone) {
+              b.className = 'hotel-zone-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-medium bg-sage-600 text-white transition';
+            } else {
+              b.className = 'hotel-zone-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-medium bg-linen text-espresso hover:bg-champagne transition';
+            }
+          });
+          renderHotels();
+        });
+      });
+
+      // Hotel Sort & Checkboxes
+      ['hotel-sort-select', 'filter-breakfast', 'filter-parking', 'filter-pool', 'filter-suites'].forEach(function(id) {
+        const el = document.getElementById(id);
+        if (el) {
+          el.addEventListener('change', renderHotels);
+        }
+      });
+
+      // Activity Category Filter Buttons
+      document.querySelectorAll('.activity-cat-btn').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          currentActivityCat = btn.getAttribute('data-activity-cat') || 'all';
+          document.querySelectorAll('.activity-cat-btn').forEach(function(b) {
+            if (b.getAttribute('data-activity-cat') === currentActivityCat) {
+              b.className = 'activity-cat-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-medium bg-sage-600 text-white transition';
+            } else {
+              b.className = 'activity-cat-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-medium bg-linen text-espresso hover:bg-champagne transition';
+            }
+          });
+          renderActivities();
+        });
+      });
+
+      // Google Form Iframe Load & Fallback Handling
+      const formIframe = document.getElementById('google-form-iframe');
+      const formPlaceholder = document.getElementById('form-loading-placeholder');
+      if (formIframe && formPlaceholder) {
+        formIframe.addEventListener('load', function() {
+          formPlaceholder.classList.add('opacity-0', 'pointer-events-none');
+        });
+        // Safety timeout to ensure placeholder fades if cross-domain iframe loads without firing standard event
+        setTimeout(function() {
+          formPlaceholder.classList.add('opacity-0', 'pointer-events-none');
+        }, 2500);
+      }
+      // Initial Render
+      switchPage('event');
+      renderAlbum();
+      renderHotels();
+      renderActivities();
+      updateCountdown();
+      if (window._cdInterval) clearInterval(window._cdInterval);
+      window._cdInterval = setInterval(updateCountdown, 1000);
+    });
+  </script>
+</body>
+</html>

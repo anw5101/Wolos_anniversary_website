@@ -1,0 +1,14 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Archives / Backups
+*.zip
+*.tar.gz
+
+# IDEs & Editors
+.vscode/
+.idea/
+*.swp
+*~
